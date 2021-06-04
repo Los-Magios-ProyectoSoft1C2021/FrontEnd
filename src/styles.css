@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.main-background {
+    background: url("./img/argentina/3333140.jpg") no-repeat center;
+}
