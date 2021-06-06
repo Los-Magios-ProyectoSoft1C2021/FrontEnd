@@ -1,6 +1,4 @@
-const html = require("./index.html");
+import html from "./index.html";
 const css = require("./styles.css");
 
-console.log("started");
-console.log("ended");
-console.log("new");
+console.log(router);

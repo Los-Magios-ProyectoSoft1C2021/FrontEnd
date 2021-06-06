@@ -5,3 +5,117 @@
 .main-background {
     background: url("./img/argentina/3333140.jpg") no-repeat center;
 }
+
+@layer components {
+    .text-primary {
+        @apply text-gray-800;
+    }
+
+    .text-primary-darker {
+        @apply text-gray-900;
+    }
+
+    .text-primary-darkest {
+        @apply text-black;
+    }
+
+    .text-primary-lighter {
+        @apply text-gray-700;
+    }
+
+    .text-primary-lightest {
+        @apply text-gray-600;
+    }
+
+    .text-on-primary {
+        @apply text-indigo-100;
+    }
+
+    .text-on-primary-darker {
+        @apply text-indigo-200;
+    }
+
+    .link {
+        @apply transition duration-300 text-gray-600 hover:text-gray-800;
+    }
+
+    .link-primary {
+        @apply transition duration-300 text-indigo-600 hover:text-indigo-800;
+    }
+
+    .link-on-primary {
+        @apply transition duration-300 text-indigo-100 hover:text-white;
+    }
+
+    .bg-color {
+        @apply bg-white;
+    }
+
+    .bg-primary {
+        @apply bg-indigo-600;
+    }
+
+    .bg-primary-darker {
+        @apply bg-indigo-700;
+    }
+
+    .font-h1 {
+        @apply text-3xl font-semibold tracking-tighter;
+    }
+
+    .font-h2 {
+        @apply text-2xl font-semibold tracking-tight;
+    }
+
+    .font-h3 {
+        @apply text-xl font-semibold tracking-normal;
+    }
+
+    .font-h4 {
+        @apply text-lg font-bold tracking-normal;
+    }
+
+    .font-h5 {
+        @apply text-base font-bold tracking-normal;
+    }
+
+    .font-h6 {
+        @apply text-base font-semibold tracking-tight;
+    }
+
+    .font-subtitle {
+        @apply text-base font-medium tracking-normal;
+    }
+
+    .font-subtitle2 {
+        @apply text-sm font-semibold tracking-normal;
+    }
+
+    .font-p {
+        @apply text-base font-medium tracking-normal;
+    }
+
+    .font-overline {
+        @apply text-base font-normal tracking-widest;
+    }
+
+    .font-btn {
+        @apply text-lg font-semibold tracking-normal;
+    }
+
+    .btn-outlined {
+        @apply transition duration-200 rounded px-2 py-2 text-indigo-600 hover:text-white border-2 border-indigo-600 hover:bg-indigo-600;
+    }
+
+    .btn-outlined-lighter {
+        @apply transition duration-200 px-2 py-2 border-2 border-indigo-500 text-white hover:text-white bg-indigo-500 hover:bg-indigo-600 font-semibold tracking-tighter text-lg;
+    }
+
+    .btn-primary-lighter {
+        @apply text-base;
+    }
+
+    .input-text {
+        @apply px-3 py-2 ring-2 ring-inset ring-gray-300 focus:ring-indigo-600 border-transparent focus:border-transparent focus:outline-none;
+    }
+}
