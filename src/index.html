@@ -2,8 +2,8 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking UNAJ</title>
 </head>
 
@@ -11,18 +11,25 @@
     <nav class="lg:container mx-auto p-4 flex items-center justify-between flex-wrap border-b">
         <!-- logo -->
         <div class="px-3 lg:px-0 flex items-center flex-shrink-0 mr-6">
-            <a href="" class="link font-h2 flex flex-row">
+            <a href="/" class="link font-h2 flex flex-row" data-link>
                 <i>
-                    <svg class="fill-current h-8 w-8 mr-2" width="48" height="48" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+                    <svg class="fill-current h-8 w-8 mr-2" width="48" height="48" viewBox="0 0 54 54"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+                    </svg>
                 </i>
-                <span class="hidden sm:block">Booking UNAJ</span>
+                <span>Booking UNAJ</span>
             </a>
         </div>
 
         <!-- hamburger -->
         <div class="block mr-4 lg:hidden">
             <button class="flex items-center px-1 py-1 link">
-                <svg class="fill-current" width="24" height="24" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                <svg class="fill-current" width="24" height="24" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                </svg>
             </button>
         </div>
 
@@ -30,66 +37,18 @@
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div class="mr-0 ml-auto mt-4 lg:mt-0 lg:mr-4 leading-none">
                 <button class="btn-outlined">
-                    <a href="#" class="font-btn">
-                        Publicar
-                    </a>
+                    <a href="#" class="font-btn"> Publicar </a>
                 </button>
             </div>
             <div class="mt-0 leading-none">
                 <button class="btn-outlined">
-                    <a href="#" class="font-btn">
-                        Iniciar sesión
-                    </a>
+                    <a href="#" class="font-btn"> Iniciar sesión </a>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section>
-        <!-- background image -->
-        <div class="main-background w-auto flex flex-col">
-            <div class="mx-auto my-auto mt-56 mb-56">
-                <div class="rounded-t bg-white px-3 py-2">
-                    <h3 class="text-black font-h3">Encuentre el hotel que está buscando</h1>
-                    <p class="text-primary font-subtitle">Explore los mejores hoteles de Argentina con sólo un click</p>
-                </div>
-
-                <div class="py-1 px-1 rounded-b bg-indigo-300 flex flex-col lg:flex-row">
-                    <input id="name" type="text" placeholder="Escriba su destino" class="input-text rounded-t rounded-b-none lg:rounded-l lg:rounded-r-none w-auto lg:w-72 flex-grow lg:flex-grow-0 m-0">
-
-                    <div class="flex flex-row">
-                        <input type="datetime" placeholder="Fecha de salida" class="input-text w-auto lg:w-36 flex-grow lg:flex-grow-0 m-0">
-                        <input type="datetime" placeholder="Fecha de regreso" class="input-text w-auto lg:w-36 flex-grow lg:flex-grow-0  m-0">
-                    </div>
-
-                    <input type="datetime" placeholder="Cantidad de personas" class="input-text w-auto lg:w-48 flex-grow lg:flex-grow-0 lg:36 m-0">
-                    <input type="button" value="Buscar" class="btn-outlined-lighter cursor-pointer w-auto lg:w-36 flex-grow lg:flex-grow-0 rounded-r border-2 font-h5">
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:container mx-auto px-5 mt-10 mb-10">
-            <div class="w-full mb-4">
-                <h2 class="text-primary-darkest font-h2">
-                    Explora Argentina
-                </h2>
-                <h3 class="text-primary-darker font-p">
-                    Estos destinos tienen mucho para ofrecerte
-                </h3>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                <div class="h-auto w-auto bg-white">
-                    <a href="#">
-                        <img src="./img/argentina/196900.jpg" alt="" class="w-full">
-                        <div class="w-full py-2">
-                            <h5 class="font-h5 text-primary-dark">Córdoba</h5>
-                            <p class="font-subtitle2 text-primary-lightest">Villa Carlos Paz, Córdoba y más...</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-    </section>
+    <section id="app"></section>
 
     <!-- footer -->
     <footer class="text-white">
@@ -98,10 +57,10 @@
                 <div class="flex flex-col text-center lg:text-left">
                     <h3 class="pb-2 font-h3">Más acerca de nosotros</h3>
 
-                    <a href="/que-hacemos" class="link-on-primary">Qué hacemos</a>
-                    <a href="/objetivos" class="link-on-primary">Objetivos</a>
-                    <a href="/mision" class="link-on-primary">Nuestra misión</a>
-                    <a href="/valores" class="link-on-primary">Nuestros valores</a>
+                    <a href="/que-hacemos" class="link-on-primary" data-link>Qué hacemos</a>
+                    <a href="/objetivos" class="link-on-primary" data-link>Objetivos</a>
+                    <a href="/mision" class="link-on-primary" data-link>Nuestra misión</a>
+                    <a href="/valores" class="link-on-primary" data-link>Nuestros valores</a>
                 </div>
                 <!-- site information-->
                 <div class="mt-4 lg:mt-0 flex flex-col text-center lg:text-left">
@@ -113,7 +72,13 @@
                     <a href="/cookies" class="link-on-primary">Cookies</a>
                 </div>
                 <!-- contact -->
-                <div class="mt-4 lg:mt-0 flex flex-col text-center lg:text-left">
+                <div class="
+                            mt-4
+                            lg:mt-0
+                            flex flex-col
+                            text-center
+                            lg:text-left
+                        ">
                     <h3 class="pb-2 font-h3">Contacto</h3>
 
                     <p>
@@ -126,42 +91,27 @@
                     </p>
                 </div>
             </div>
-
         </div>
 
         <!-- copyright-->
         <div class="bg-primary-darker">
             <div class="justify-center lg:container mx-auto flex flex-none divide-x-2">
                 <div class="px-3 py-auto items-center flex flex-row flex-none">
-                    <svg class="fill-current mr-2" width="20" height="20" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+                    <svg class="fill-current mr-2" width="20" height="20" viewBox="0 0 54 54"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
+                    </svg>
                     <span class="text-center font-h6">Booking UNAJ</span>
                 </div>
                 <div class="px-3 my-4 flex-shrink">
-                    <p class="text-center font-subtitle2">© 2021 Booking UNAJ. Todos los derechos reservados.</p>
+                    <p class="text-center font-subtitle2">
+                        © 2021 Booking UNAJ. Todos los derechos reservados.
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
-
-
-    <div class="container mx-auto flex flex-col justify-center"> 
-        <h1 class="font-h1">Texto de prueba H1</h1>
-        <h2 class="font-h2">Texto de prueba H2</h2>
-        <h3 class="font-h3">Texto de prueba H3</h3>
-        <h4 class="font-h4">Texto de prueba H4</h4>
-        <h5 class="font-h5">Texto de prueba H5</h5>
-        <h6 class="font-h6">Texto de prueba H6</h6>
-        <h5 class="font-subtitle">Texto de prueba Subtitle</h5>
-        <h6 class="font-subtitle2">Texto de prueba Subtitle2</h6>
-        <p class="">Un párrafo es un fragmento escrito que se caracteriza y diferencia de 
-            otros párrafos por tener un punto y aparte. ... 
-            En este ejemplo, encontramos 3 párrafos (el primero en azul, el segundo en verde y el tercero en bordó).</p>
-        <li><a href="http://facebook.com" class="link-on-primary bg-primary" >link a facebook</a></li>
-
-    </div>
-    <div>
-    </div>
-
 </body>
 
 </html>

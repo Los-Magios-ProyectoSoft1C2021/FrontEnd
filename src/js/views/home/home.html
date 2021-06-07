@@ -1,0 +1,77 @@
+<!-- background image -->
+<div class="main-background w-auto flex flex-col">
+    <div class="mx-auto my-auto mt-56 mb-56">
+        <div class="rounded-t bg-white px-3 py-2">
+            <h3 class="text-black font-h3">Encuentre el hotel que está buscando</h1>
+                <p class="text-primary font-subtitle">Explore los mejores hoteles de Argentina con sólo un click</p>
+        </div>
+
+        <div class="py-1 px-1 rounded-b bg-indigo-300 flex flex-col lg:flex-row">
+            <input id="name" type="text" placeholder="Escriba su destino"
+                class="input-text rounded-t rounded-b-none lg:rounded-l lg:rounded-r-none w-auto lg:w-72 flex-grow lg:flex-grow-0 m-0">
+
+            <div class="flex flex-row">
+                <input type="datetime" placeholder="Fecha de salida"
+                    class="input-text w-auto lg:w-36 flex-grow lg:flex-grow-0 m-0">
+                <input type="datetime" placeholder="Fecha de regreso"
+                    class="input-text w-auto lg:w-36 flex-grow lg:flex-grow-0  m-0">
+            </div>
+
+            <input type="datetime" placeholder="Cantidad de personas"
+                class="input-text w-auto lg:w-48 flex-grow lg:flex-grow-0 lg:36 m-0">
+            <input type="button" value="Buscar"
+                class="btn-outlined-lighter cursor-pointer w-auto lg:w-36 flex-grow lg:flex-grow-0 rounded-r border-2 font-h5">
+        </div>
+    </div>
+</div>
+
+<div class="lg:container mx-auto px-5 mt-10 mb-10">
+    <div class="w-full mb-4">
+        <h2 class="text-primary-darkest font-h2">
+            Explora Argentina
+        </h2>
+        <h3 class="text-primary-darker font-p">
+            Estos destinos tienen mucho para ofrecerte
+        </h3>
+    </div>
+
+    <div class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div class="h-auto w-auto bg-white">
+                        <a href="/cordoba" data-link>
+                            <img src="/src/img/argentina/196900.jpg" alt="" class="w-full">
+                            <div class="w-full py-2">
+                                <h5 class="font-h5 text-primary-dark">Córdoba</h5>
+                                <p class="font-subtitle2 text-primary-lightest">Villa Carlos Paz, Córdoba y más...</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="h-auto w-auto bg-white">
+                        <a href="/cordoba" data-link>
+                            <img src="/src/img/argentina/196900.jpg" alt="" class="w-full">
+                            <div class="w-full py-2">
+                                <h5 class="font-h5 text-primary-dark">Córdoba</h5>
+                                <p class="font-subtitle2 text-primary-lightest">Villa Carlos Paz, Córdoba y más...</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div class="h-auto w-auto bg-white">
+                        <a href="/cordoba">
+                            <img src="/src/img/argentina/196900.jpg" alt="" class="w-full">
+                            <div class="w-full py-2">
+                                <h5 class="font-h5 text-primary-dark">Córdoba</h5>
+                                <p class="font-subtitle2 text-primary-lightest">Villa Carlos Paz, Córdoba y más...</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

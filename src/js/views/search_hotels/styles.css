@@ -1,0 +1,314 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.container-title-hotel{
+    position: absolute;
+    width:180px;
+    height:50px;
+    top:14%;
+    left: 48%;
+    background-color: rgb(255, 255, 255);
+    z-index: 31;
+}
+.container-title-hotel h2{
+    text-align: center;
+    padding: 0;
+    font-size: 23px;
+}
+
+.container-goldstar-hotel{
+    position: absolute;
+    width:35px;
+    height:35px;
+    top:14%;
+    left: 85%;
+    background-color: rgb(255, 0, 0);
+    z-index: 31;
+}
+
+.container-despcription-hotel{
+    position: absolute;
+    width:300px;
+    height:162px;
+    top:30%;
+    left: 50%;
+    background-color: rgb(255, 255, 255);
+    z-index: 31;
+}
+.container-cantgoldstars-hotel{
+    position: absolute;
+    width:35px;
+    height:35px;
+    top:14%;
+    left: 90%;
+    background-color: rgb(255, 255, 255);
+    z-index: 31;
+}
+.container-despcription-hotel p{
+    padding: 0;
+    font-size: 15px;
+}
+
+.container-izquierda-title{
+    position: absolute;
+    width:150px;
+    height:50px;
+    top:3%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 31;
+}
+
+/*Container titles*/
+.container-izquierda-title1{
+    position: absolute;
+    width:200px;
+    height:25px;
+    top:14%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 32;
+}
+.container-izquierda-title2{
+    position: absolute;
+    width:150px;
+    height:25px;
+    top:31%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 32;
+}
+.container-izquierda-title3{
+    position: absolute;
+    width:150px;
+    height:25px;
+    top:47.9%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 32;
+}
+.container-izquierda-title4{
+    position: absolute;
+    width:150px;
+    height:25px;
+    top:65%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 32;
+}
+.container-izquierda-title5{
+    position: absolute;
+    width:150px;
+    height:25px;
+    top:82%;
+    left: 10%;
+    background-color: rgb(7, 7, 83);
+    z-index: 32;
+}
+
+/*Lef position*/
+.izquierda{
+    position: relative;
+    left: -10px;
+}
+
+/*Rectangles left side*/
+.rectangle-hotel{
+    width:750px;
+    height:300px;
+    padding:  50px;
+    background: #4e54c8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    position:absolute;
+    z-index: 11;
+    top:32%;
+    left: 29%;
+    border-radius: 1rem;
+}
+
+.rectangle-hotel::after{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: '';
+    background:white; 
+    width:750px;
+    height:300px;
+    filter:blur(7px);
+    z-index: -11;
+}
+/*Rectangles in rectangle hotel*/
+.rectangle{
+    width:300px;
+    height:620px;
+    background:rgb(7, 7, 83);
+    position:relative;
+    left:-720px;
+    z-index: 10;
+    border-radius: 1rem;
+}
+
+.rectangle2{
+    width:238px;
+    height:55px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:10%;
+    top:18%;
+    z-index: 15;
+}
+
+.rectangle3{
+    width:238px;
+    height:55px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:10%;
+    top:35%;
+    z-index: 25;
+}
+
+.rectangle4{
+    width:238px;
+    height:55px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:10%;
+    top:52%;
+    z-index: 26;
+}
+
+.rectangle5{
+    width:238px;
+    height:55px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:10%;
+    top:69%;
+    z-index: 27;
+}
+
+.rectangle6{
+    width:238px;
+    height:55px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:10%;
+    top:86%;
+    z-index: 27;
+}
+
+/*Image rectangle*/
+.image-rectangle2{
+    width:35px;
+    height: 35px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:5%;
+    top:21%;
+    z-index: 30;
+}
+
+.image-rectangle3{
+    width:35px;
+    height: 35px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:5%;
+    top:21%;
+    z-index: 30;
+}
+
+.image-rectangle4{
+    width:35px;
+    height: 35px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:5%;
+    top:21%;
+    z-index: 30;
+}
+
+.image-rectangle5{
+    width:35px;
+    height: 35px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:5%;
+    top:21%;
+    z-index: 30;
+}
+
+.image-rectangle6{
+    width:35px;
+    height: 35px;
+    background:rgb(255, 255, 255);
+    position:absolute;
+    left:5%;
+    top:21%;
+    z-index: 30;
+}
+
+/* style of inputs*/
+.form{
+    width:100%;
+    height: 20px;
+    max-width: 100px;
+    position: absolute;
+    top: 25%;
+    left:100%;
+}
+.dates{
+    width:100%;
+    height: 20px;
+    max-width: 100px;
+    position: absolute;
+    top: 25%;
+    left:100%;
+}
+.dates input{
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: 0px;
+}
+.form input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: 0px;
+}
+
+/*
+.form .lbl-numb::after{
+    content: '';
+    position:absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid #2ecece;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}*/
+h5 {
+    padding: 0;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    padding: 0;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+h1 {
+    text-align: center;
+    padding: 0;
+    font-size: 23px;
+}
