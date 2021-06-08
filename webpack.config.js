@@ -13,9 +13,11 @@ module.exports = {
         publicPath: "/",
     },
     devServer: {
+        host: '0.0.0.0',
+        disableHostCheck: true,
         contentBase: path.join(__dirname, "dist"),
         hot: true,
-        port: 8080,
+        port: 3000,
         //compress: true,
         historyApiFallback: true,
         //writeToDisk: true,
