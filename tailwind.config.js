@@ -10,7 +10,11 @@ module.exports = {
         extend: {},
     },
     variants: {
-        extend: {},
+        extend: {
+            backgroundColor: ['group-focus'],
+            textColor: ['group-focus', 'focus-within'],
+            ringColor: ['focus-within']
+        },
     },
     plugins: [],
 };
