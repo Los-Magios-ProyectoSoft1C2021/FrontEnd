@@ -6,7 +6,11 @@ import SearchHotels from "./views/search_hotels/SearchHotels.js";
 const routes = [
     {
         path: "/",
-        action: async () => Home,
+        action: async (context) => {
+            console.log(context.path);
+            console.log(context.query);
+            return Home;
+        },
     },
     {
         path: "/buscar",

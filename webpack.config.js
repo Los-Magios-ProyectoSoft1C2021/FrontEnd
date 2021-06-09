@@ -1,38 +1,48 @@
-const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+//const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: ["./src/main.js"],
-    mode: "development",
-    devtool: "eval-cheap-source-map",
+    mode: "production",
+    devtool: (process.env.NODE_ENV === 'production') ? 'cheap-module-source-map' : 'eval-source-map',
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
+        filename: "[name].js",
         publicPath: "/",
     },
     devServer: {
-        host: '0.0.0.0',
-        disableHostCheck: true,
         contentBase: path.join(__dirname, "dist"),
-        hot: true,
-        port: 3000,
+        hot: false,
+        port: 8080,
         //compress: true,
         historyApiFallback: true,
         //writeToDisk: true,
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            parallel: true,
+        })],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
         }),
+        new MiniCssExtractPlugin(),
         /*
         new CopyPlugin({
             patterns: [{
                 from: "./src/img",
                 to: "img"
-            }],
-        }),*/
+            }]
+        }),
+        */
     ],
     module: {
         rules: [{
@@ -47,7 +57,7 @@ module.exports = {
         },
         {
             test: /\.css$/i,
-            use: ["style-loader", "css-loader", "postcss-loader"],
+            use: [MiniCssExtractPlugin.loader, /*"style-loader",*/ "css-loader", "postcss-loader"],
         },
         {
             test: /\.s[ac]ss$/i,
@@ -71,7 +81,10 @@ module.exports = {
         {
             test: /\.handlebars$/,
             loader: "handlebars-loader",
+            options: {
+                helperDirs: [path.join(__dirname, './src/js/handlebars')],
+            },
         },
-        ],
+        ]
     },
 };

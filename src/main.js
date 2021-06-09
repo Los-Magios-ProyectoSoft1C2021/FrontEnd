@@ -1,9 +1,10 @@
 import html from "./index.html";
 import css from "./styles.css";
-import regeneratorRuntime from "regenerator-runtime";
+import "regenerator-runtime/runtime";
 
 import UniversalRouter from "universal-router";
 import { routes } from "./js/routes";
+import queryString from 'query-string';
 
 const router = new UniversalRouter(routes);
 
@@ -13,7 +14,11 @@ const navigateTo = async (url) => {
     let pathname = window.location.pathname;
 
     // get the class and create the view
-    let viewClass = await router.resolve({ pathname: pathname });
+    let viewClass = await router.resolve({
+        pathname: location.pathname,
+        query: queryString.parse(location.search),
+        hash: location.hash
+    });
     let view = new viewClass();
 
     // change the content of the page
@@ -25,8 +30,6 @@ const navigateTo = async (url) => {
     await view.executeViewScript();
 };
 
-window.addEventListener("popstate", navigateTo);
-
 window.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
         if (e.target.matches("[data-link]")) {
@@ -37,3 +40,5 @@ window.addEventListener("DOMContentLoaded", () => {
 
     navigateTo();
 });
+
+window.addEventListener("popstate", () => { navigateTo(null) })

@@ -11,6 +11,7 @@ liveReloadServer.watch(path.join(__dirname, 'public'));
 
 app.use(connectLivereload());
 
+
 // Set public folder as root
 app.use(express.static('public'));
 
@@ -19,7 +20,7 @@ app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 
 
 app.get("/*", (req, res) => {
-    res.sendFile(path.resolve("public", "index.html"));
+  res.sendFile(path.resolve("public", "index.html"));
 });
 
 // Listen for HTTP requests on port 3000

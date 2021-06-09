@@ -1,9 +1,17 @@
 module.exports = {
     purge: {
-        enabled: false,
+        enabled: true,
         mode: "all",
         preserveHtmlElements: false,
-        content: ["./src/**/*.html", "./src/**/*.js"],
+        content: [
+            "./src/*.html",
+            "./src/js/**/*.html",
+            "./src/js/**/*.handlebars",
+            "./src/*.js",
+            "./src/**/.html",
+            "./src/**/*.js",
+            "./src/**/*.handlebars"
+        ],
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
@@ -11,9 +19,6 @@ module.exports = {
     },
     variants: {
         extend: {
-            backgroundColor: ['group-focus'],
-            textColor: ['group-focus', 'focus-within'],
-            ringColor: ['focus-within']
         },
     },
     plugins: [],
