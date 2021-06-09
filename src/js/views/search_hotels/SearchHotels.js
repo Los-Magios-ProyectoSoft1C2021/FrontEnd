@@ -73,6 +73,9 @@ export default class extends AbstractView {
     }
 
     async executeViewScript() {
+
+        var date = new Date()
+        var date1 = date.setDate(date.getDate() + 1);
         let fechaEntrada = document.querySelector("#fecha_entrada");
         let feDatepicker = new Datepicker(fechaEntrada, {
             orientation: "bottom auto",
@@ -82,8 +85,9 @@ export default class extends AbstractView {
         let fechaSalida = document.querySelector("#fecha_salida");
         let fsDatepicker = new Datepicker(fechaSalida, {
             orientation: "bottom auto",
-            minDate: new Date()
+            minDate: date1
         });
+
 
         let result = await getPage();
         const hotels = result['data'];
