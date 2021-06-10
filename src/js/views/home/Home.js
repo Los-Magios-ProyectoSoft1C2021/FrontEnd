@@ -42,7 +42,21 @@ const updateDestinos = async (e) => {
     }
 }
 
+const datePickerConfig = (date) => {
+    return {
+        autohide: "true",
+        format: "dd/mm/yyyy",
+        orientation: "bottom auto",
+        minDate: date
+    }
+};
+
 export default class extends AbstractView {
+    destinoInputText;
+    feDatepicker;
+    fsDatepicker;
+    tipoHabitacionSelector;
+
     constructor(params) {
         super(params);
         this.setTitle("Booking UNAJ");
@@ -51,12 +65,29 @@ export default class extends AbstractView {
     async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
-        divElement.id = "home";
+        divElement.id = "home_container";
 
         return divElement;
     }
 
     async executeViewScript() {
+        this.initTipoHabitacionSelector();
+        this.initDestinoInputText();
+        this.initCarrousel();
+        this.initDataPickers();
+        this.initSearchButton();
+    }
+
+    initTipoHabitacionSelector() {
+        this.tipoHabitacionSelector = document.querySelector("#tipo_habitacion");
+    }
+
+    initDestinoInputText() {
+        this.destinoInputText = document.querySelector("#destino");
+        this.destinoInputText.addEventListener("input", updateDestinos);
+    }
+
+    initCarrousel() {
         new Splide(".splide", {
             type: 'loop',
             pagination: false,
@@ -75,20 +106,47 @@ export default class extends AbstractView {
                 },
             },
         }).mount();
+    }
 
+    initDataPickers() {
         let fechaEntrada = document.querySelector("#fecha_entrada");
-        let feDatepicker = new Datepicker(fechaEntrada, {
-            orientation: "bottom auto",
-            minDate: new Date()
-        });
+        this.feDatepicker = new Datepicker(fechaEntrada, datePickerConfig(new Date()));
 
         let fechaSalida = document.querySelector("#fecha_salida");
-        let fsDatepicker = new Datepicker(fechaSalida, {
-            orientation: "bottom auto",
-            minDate: new Date()
-        });
+        this.fsDatepicker = new Datepicker(fechaSalida, datePickerConfig(new Date()));
+    }
 
-        let busquedaDestino = document.querySelector("#destino");
-        busquedaDestino.addEventListener("input", updateDestinos);
+    initSearchButton() {
+        let searchButton = document.getElementById("search");
+        searchButton.addEventListener("click", (e) => {
+            console.log("clicked");
+
+            let destino = this.destinoInputText.value;
+            destino = destino.substring(0, destino.indexOf(","));
+
+            let dateStart = this.feDatepicker.getDate("yyyy-mm-dd");
+            let dateEnd = this.fsDatepicker.getDate("yyyy-mm-dd");
+            let tipoHabitacion = this.tipoHabitacionSelector.value;
+
+            const params = new URLSearchParams();
+
+            if (destino != null && destino.length > 0)
+                params.append("destino", destino);
+
+            if (dateStart != null)
+                params.append("entrada", dateStart);
+
+            if (dateEnd != null)
+                params.append("salida", dateEnd);
+
+            if (tipoHabitacion != "Todos" && tipoHabitacion != "Tipo")
+                params.append("tipo", tipoHabitacion);
+
+            const path = "/buscar?" + params.toString();
+            console.log(path);
+
+            window.location.href = path;
+            //history.pushState(undefined, undefined, path);
+        })
     }
 }

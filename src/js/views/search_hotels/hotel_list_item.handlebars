@@ -1,4 +1,9 @@
-{{#each hotel}}
+<div class="flex flwx-row">
+    <h2 class="font-h2 flex-grow">Mostrando resultados para {{city}}</h2>
+    <h4 class="font-h6 flex-shrink mb-0 mt-auto">Página {{currentPage}} de {{pageCount}}</h4>
+</div>
+
+{{#each hotels}}
 <div class="bg-white border rounded-lg overflow-hidden shadow-xl flex flex-row">
     <div class="h-44 w-44 flex-none">
         <img src="{{foto}}" alt="" class="h-full w-full object-cover">
@@ -32,3 +37,15 @@
     </div>
 </div>
 {{/each}}
+
+<div class="text-primary-dark flex items-center mr-auto ml-auto pt-4">
+    <div>
+        {{#each navPages}}
+        <a page-link="{{page}}"
+            class="font-h4 hover:bg-gray-700 hover:text-gray-300 mr-1 ml-1 pr-3 pl-4 py-3 rounded page-item text-center items-center"
+            href="{{url}}">
+            {{page}}
+        </a>
+        {{/each}}
+    </div>
+</div>

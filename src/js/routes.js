@@ -7,14 +7,15 @@ const routes = [
     {
         path: "/",
         action: async (context) => {
-            console.log(context.path);
-            console.log(context.query);
-            return Home;
+            return new Home(context.query);
         },
     },
     {
         path: "/buscar",
-        action: async () => SearchHotels,
+        action: async (context) => {
+            console.log(context.query);
+            return new SearchHotels(context.query);
+        },
     },
     {
         path: "/que-hacemos",

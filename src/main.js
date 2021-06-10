@@ -8,18 +8,15 @@ import queryString from 'query-string';
 
 const router = new UniversalRouter(routes);
 
-const navigateTo = async (url) => {
-    if (url != null) history.pushState(null, null, url);
-
+const navigateTo = async () => {
     let pathname = window.location.pathname;
 
     // get the class and create the view
-    let viewClass = await router.resolve({
+    let view = await router.resolve({
         pathname: location.pathname,
         query: queryString.parse(location.search),
         hash: location.hash
     });
-    let view = new viewClass();
 
     // change the content of the page
     let content = document.querySelector("#app");
@@ -34,11 +31,22 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
-            navigateTo(e.target.href);
+
+            console.log("data-link")
+            history.pushState(undefined, undefined, e.target.href)
+            navigateTo();
         }
     });
 
     navigateTo();
 });
 
-window.addEventListener("popstate", () => { navigateTo(null) })
+window.addEventListener("popstate", () => {
+    console.log("popstate");
+    navigateTo();
+})
+
+window.addEventListener("hashchange", () => {
+    console.log(`location changed: ${location.pathname}`);
+    navigateTo();
+});

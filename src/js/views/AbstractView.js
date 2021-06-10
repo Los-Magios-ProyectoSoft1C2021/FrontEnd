@@ -17,5 +17,5 @@ export default class {
         return "";
     }
 
-    async executeViewScript() {}
+    async executeViewScript() { }
 }

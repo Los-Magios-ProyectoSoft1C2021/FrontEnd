@@ -3,6 +3,7 @@ import AbstractView from "../AbstractView";
 import view from "./search_hotels.html";
 
 import { Datepicker } from 'vanillajs-datepicker'
+import { param } from "jquery";
 
 const template = require('./hotel_list_item.handlebars');
 const url = "https://localhost:44309/api/hotel/"
@@ -11,7 +12,6 @@ const updateDestinos = async (e) => {
     let busquedaDestino = document.querySelector("#destino");
     let text = busquedaDestino.value;
 
-    console.log(text);
 
     if (text.length < 3) {
         return;
@@ -44,8 +44,24 @@ const updateDestinos = async (e) => {
     }
 }
 
-const getPage = async () => {
-    let response = await fetch("https://localhost:44309/api/hotel/?page=1", {
+const getPage = async (ciudad, estrellas, pageNumber) => {
+    let params = new URLSearchParams();
+
+    if (ciudad != null && ciudad.length > 0)
+        params.append("ciudad", ciudad);
+
+    if (estrellas !== undefined && estrellas > 0)
+        params.append("estrellas", estrellas);
+
+    if (pageNumber !== undefined && pageNumber > 0)
+        params.append("page", pageNumber);
+    else
+        params.append("page", 1);
+
+    let url = `https://localhost:44309/api/hotel/?${params.toString()}`;
+    console.log(url);
+
+    let response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -58,9 +74,51 @@ const getPage = async () => {
     return json;
 }
 
+const datePickerConfig = (date) => {
+    return {
+        autohide: "true",
+        format: "dd/mm/yyyy",
+        orientation: "bottom auto",
+        minDate: date
+    }
+};
+
 export default class extends AbstractView {
+    destinoInputText;
+    feDatepicker;
+    fsDatepicker;
+    hotelsList;
+
+    currentDestino;
+    currentTipo;
+    currentFechaEntrada;
+    currentFechaSalida;
+    currentEstrellas;
+
+    currentPage;
+
     constructor(params) {
         super(params);
+        console.log(params);
+
+        if ('destino' in params)
+            this.currentDestino = params.destino;
+
+        if ('entrada' in params)
+            this.currentFechaEntrada = params.entrada;
+
+        if ('salida' in params)
+            this.currentFechaSalida = params.salida;
+
+        if ('tipo' in params)
+            this.currentTipo = params.tipo;
+
+        if ('estrellas' in params)
+            this.currentEstrellas = params.estrellas;
+
+        if ('page' in params)
+            this.currentPage = params.page;
+
         this.setTitle("Booking UNAJ");
     }
 
@@ -73,39 +131,104 @@ export default class extends AbstractView {
     }
 
     async executeViewScript() {
+        this.initDatePickers();
+        this.initDestinoInputText();
 
-        var date = new Date()
-        var date1 = date.setDate(date.getDate() + 1);
+        this.setHotelsContent(this.currentPage);
+    }
+
+    initDatePickers() {
+        let datePickerStart = new Date()
+        let datePickerEnd = datePickerStart.setDate(datePickerStart.getDate() + 1);
+
         let fechaEntrada = document.querySelector("#fecha_entrada");
-        let feDatepicker = new Datepicker(fechaEntrada, {
-            orientation: "bottom auto",
-            minDate: new Date()
-        });
+        this.feDatepicker = new Datepicker(fechaEntrada, datePickerConfig(datePickerStart));
 
         let fechaSalida = document.querySelector("#fecha_salida");
-        let fsDatepicker = new Datepicker(fechaSalida, {
-            orientation: "bottom auto",
-            minDate: date1
+        this.fsDatepicker = new Datepicker(fechaSalida, datePickerConfig(datePickerEnd));
+    }
+
+    initDestinoInputText() {
+        this.destinoInputText = document.querySelector("#destino");
+        this.destinoInputText.addEventListener("input", updateDestinos);
+    }
+
+    async setHotelsContent(pageNumber) {
+        let result = await getPage(this.currentDestino, this.currentEstrellas, pageNumber);
+        const htmlHotels = template({
+            city: this.currentDestino,
+            hotels: result.data,
+            currentPage: result.currentPage,
+            pageCount: result.pageCount,
+            navPages: this.getNavPages(result.currentPage, result.pageCount),
         });
 
+        this.hotelsList = document.getElementById("list_hotels");
+        this.hotelsList.innerHTML = htmlHotels;
 
-        let result = await getPage();
-        const hotels = result['data'];
-        const htmlHotels = template({ hotel: hotels });
+        document.body.addEventListener("click", (e) => {
+            if (e.target.matches("[page-link]")) {
+                e.preventDefault();
+                history.pushState(undefined, undefined, e.target.href);
 
-        let elem = document.getElementById("list_hotels");
-        elem.innerHTML = htmlHotels;
-
-        let busquedaDestino = document.querySelector("#destino");
-        busquedaDestino.addEventListener("input", updateDestinos);
+                this.clearHotelsContent();
+                this.currentPage = e.target.text.trim();
+                this.setHotelsContent(this.currentPage);
+            }
+        });
     }
-}
 
-/*
-Handlebars.registerHelper("calculateStar", function (estrellas) {
-    var cantEstrellas = estrellas;
-    return cantEstrellas;
-})
-let estrellas = [1, 2, 3, 4, 5];
+    clearHotelsContent() {
+        this.hotelsList.innerHTML = "";
+    }
 
-*/
+    getNavPages(currentPage, pageCount) {
+        let navPages = [];
+
+        let i = currentPage - 1;
+        if (currentPage == pageCount)
+            i = currentPage - 2;
+
+        while (navPages.length < 4) {
+            let page = i;
+            i += 1;
+
+            if (page <= 0) continue;
+
+            const params = new URLSearchParams();
+            params.append("page", page);
+
+            if (this.currentDestino !== undefined && this.currentDestino.length > 0)
+                params.append("destino", this.currentDestino);
+
+            if (this.currentFechaEntrada != null)
+                params.append("entrada", this.currentFechaEntrada);
+
+            if (this.currentFechaSalida != null)
+                params.append("salida", this.currentFechaSalida);
+
+            let url = `/buscar/?${params.toString()}`
+
+            if (navPages.length == 0) {
+                navPages.push({
+                    url: url,
+                    page: "<",
+                })
+            }
+
+            navPages.push({
+                url: url,
+                page: page,
+            })
+
+            if (navPages.length == 4) {
+                navPages.push({
+                    url: url,
+                    page: ">",
+                })
+            }
+        }
+
+        return navPages;
+    }
+};
