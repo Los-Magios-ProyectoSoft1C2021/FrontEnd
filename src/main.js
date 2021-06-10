@@ -41,12 +41,14 @@ window.addEventListener("DOMContentLoaded", () => {
     navigateTo();
 });
 
-window.addEventListener("popstate", () => {
+window.addEventListener("popstate", (e) => {
+    e.preventDefault();
     console.log("popstate");
     navigateTo();
 })
 
-window.addEventListener("hashchange", () => {
+window.addEventListener("hashchange", (e) => {
+    e.preventDefault();
     console.log(`location changed: ${location.pathname}`);
     navigateTo();
 });

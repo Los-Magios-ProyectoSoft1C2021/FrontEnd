@@ -35,6 +35,7 @@ const updateDestinos = async (e) => {
             let provincia = element['provincia'];
 
             let option = `${ciudad}, ${provincia}`;
+            console.log(option);
 
             let optionElement = document.createElement("option");
             optionElement.value = option;
@@ -120,6 +121,17 @@ export default class extends AbstractView {
             this.currentPage = params.page;
 
         this.setTitle("Booking UNAJ");
+
+        document.body.addEventListener("click", (e) => {
+            if (e.target.matches("[page-link]")) {
+                e.preventDefault();
+                history.pushState(undefined, undefined, e.target.href);
+
+                this.clearHotelsContent();
+                this.currentPage = e.target.text.trim();
+                this.setHotelsContent(this.currentPage);
+            }
+        });
     }
 
     async getHtml() {
@@ -165,21 +177,13 @@ export default class extends AbstractView {
 
         this.hotelsList = document.getElementById("list_hotels");
         this.hotelsList.innerHTML = htmlHotels;
-
-        document.body.addEventListener("click", (e) => {
-            if (e.target.matches("[page-link]")) {
-                e.preventDefault();
-                history.pushState(undefined, undefined, e.target.href);
-
-                this.clearHotelsContent();
-                this.currentPage = e.target.text.trim();
-                this.setHotelsContent(this.currentPage);
-            }
-        });
     }
 
     clearHotelsContent() {
         this.hotelsList.innerHTML = "";
+
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
     getNavPages(currentPage, pageCount) {
@@ -221,7 +225,7 @@ export default class extends AbstractView {
                 page: page,
             })
 
-            if (navPages.length == 4) {
+            if (navPages.length == 4 || page == pageCount) {
                 navPages.push({
                     url: url,
                     page: ">",
