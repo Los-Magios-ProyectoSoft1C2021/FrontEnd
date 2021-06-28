@@ -1,7 +1,9 @@
 import UniversalRouter from "universal-router";
+import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
 
 import Home from "./views/home/Home.js";
 import SearchHotels from "./views/search_hotels/SearchHotels.js";
+
 
 const routes = [
     {
@@ -15,6 +17,12 @@ const routes = [
         action: async (context) => {
             console.log(context.query);
             return new SearchHotels(context.query);
+        },
+    },
+    {
+        path: "/hotel",
+        action: async () => {
+            return new DetailsHotels();
         },
     },
     {
