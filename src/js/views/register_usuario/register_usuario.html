@@ -1,0 +1,48 @@
+<div class="mt-6 mb-24">
+    <main class="container-login">
+        <section>
+            <h3 class="font-h6 text-2xl">Registro de usuario</h3>
+            <p class="font-h6 text-gray-500 pt-2">Ingresa tus datos</p>
+        </section>
+
+        <section class="mt-10">
+            <form class="flex flex-col" method="POST" action="#">
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="apellido">Apellido</label>
+                    <input type="text" id="apellido" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="email">Email</label>
+                    <input type="text" id="email" class="input-login" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="nacionalidad">Nacionalidad</label>
+                    <input type="text" id="nacionalidad" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="dni">DNI</label>
+                    <input type="text" id="dni" class="input-login" required="" maxlength="8" minlength="8" >
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="telefono">Telefono</label>
+                    <input type="tel" id="telefono" class="input-login" required="" pattern="[0-9]{4}-[0-9]{4}">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="nombre-usuario">Nombre de usuario</label>
+                    <input type="text" id="nombre-usuario" class="input-login" required="" pattern="[a-z0-9._%+-]{1,15}">
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="label-login" for="password">Contraseña</label>
+                    <input type="password" id="contreseña" class="input-login" required="" minlength="8" maxlength="10" >
+                </div>
+                <div class="flex flex-grow flex-row items-center justify-center">
+                    <button class="bg-primary hover:bg-primary-darker text-white font-h6 py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full" type="submit">Registrarme</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>

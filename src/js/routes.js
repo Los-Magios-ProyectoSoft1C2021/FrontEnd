@@ -3,6 +3,8 @@ import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
 
 import Home from "./views/home/Home.js";
 import SearchHotels from "./views/search_hotels/SearchHotels.js";
+import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
+import RegisterUsuario from "./views/register_usuario/RegisterUsuario.js";
 
 
 const routes = [
@@ -23,6 +25,18 @@ const routes = [
         path: "/hotel",
         action: async () => {
             return new DetailsHotels();
+        },
+    },
+    {
+        path: "/login",
+        action: async () => {
+            return new LoginUsuario();
+        },
+    },
+    {
+        path: "/register",
+        action: async () => {
+            return new RegisterUsuario();
         },
     },
     {
