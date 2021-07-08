@@ -1,5 +1,155 @@
-<div class="lg:container mx-auto mb-12 mt-6">
-    <div class="flex items-center justify-center">
+<div class="lg:container mx-auto mb-12 mt-6 w-1/2">
+    <div class="flex lg:flex-row flex-col">
+        <div class="lg:container lg:mt-6 w-auto flex flex-col ">
+            <div class="flex  pb-3 ">
+                <div class="font-h1 tracking-normal">
+                    Hotel park
+                </div>
+                <div class="pl-3 pt-2 flex flex-row flex-grow">
+                    <svg class="text-yellow-500 h-6 w-6" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="flex  pb-12">
+                <p class="font-h6 text-gray-600">{{direccion}} {{direccionNum}}, {{ciudad}}, {{provincia}}</p>
+            </div>
+            <div class="primary-slider w-full">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide ">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-full">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-full">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-full">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-full">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-full">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="secondary-slider ">
+                <div class="splide__track h-36">
+                    <ul class="splide__list flex flex-row ">
+                        <li class="splide__slide">
+                            <div class="w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class=" w-auto bg-white">
+                                <img src="/src/img/hoteles/kuldeep-swarnkaar-g1pCP0kViMI-unsplash.jpg" alt="" class="w-auto h-auto">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="h-auto w-auto bg-white lg:flex-grow flex flex-col gap-2 px-4 mt-24 ">
+            <div class="lg:w-72 lg:mt-12 w-auto h-auto px-4 py-3 mx-4 rounded bg-primary-darker lg:flex-none ">
+                <form action="">
+                    <h3 class="font-h2 text-white mb-2">Rerserva</h3>
+                    <h6 class="mb-1 font-h6 text-white">Fecha de entrada</h6>
+                    <div class="inline-block relative w-full mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
+                            </svg>
+                        </div>
+                        <input type="text" placeholder="Entrada"
+                            class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
+                            id="fecha_entrada">
+                        </input>
+                    </div>
+    
+                    <h6 class="mb-1 font-h6 text-white">Fecha de salida</h6>
+                    <div class="inline-block relative w-full lg:w-auto mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
+                            </svg>
+                        </div>
+                        <input type="text" placeholder="Salida"
+                            class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
+                            id="fecha_salida">
+                        </input>
+                    </div>
+                    <h6 class="mb-1 font-h6 text-white">Tipo de habitación</h6>
+                    <div class="inline-block relative w-full">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                            </svg>
+                        </div>
+                        <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded">
+                            <option>Cualquiera</option>
+                            <option>Indivual</option>
+                            <option>Matrimonial</option>
+                            <option>Suite</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+    
+                    <input type="button" class="mb-2 mt-6 btn-filled py-2 w-full text-white" id="destino" value="Reservar">
+                </form>
+            </div>
+        </div>
+    </div>
+
+        
+    
+        
+        
+    <!-- 
         <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
             <div class=" col-span-2 row-span-2 bg-white p-3 rounded">
                 <img src="/src/img/edvin-johansson-rlwE8f8anOc-unsplash.jpg" class="h-full w-full object-cover" alt="">
@@ -11,32 +161,29 @@
                 <img src="/src/img/edvin-johansson-rlwE8f8anOc-unsplash.jpg" class="h-full w-full object-cover" alt="">
             </div>
         </div>
+    -->
+    <div class="text-black font-h1 mt-16 pb-2">
+        Ubicación en el mapa
     </div>
-    <div class="flex lg:flex-row flex-col">
-        <div class="lg:w-1/2 lg:mt-6 w-auto h-full lg:flex-none">
-            <div class="flex  pl-2 pt-6">
-                <div class="font-h1 tracking-normal">
-                    Hotel park
-                </div>
-                <div class="pl-3 pt-2 flex flex-row flex-grow">
-                    <svg class="text-yellow-500 h-6 w-6" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                    </svg>
-                </div>
+    <div class="flex  pb-2 ">
+        <span class="font-subtitle text-black mr-2">Direccion:</span>
+        <span class="font-subtitle text-gray-500 ">Arenales 332</span>
+    </div>
+    <div class="flex  flex-col ">
+        <div class="lg:mt-6 w-auto h-full lg:flex-none">
+            <div class="h-auto w-full bg-white lg:flex-grow flex flex-col  ">
+
+                <div id ="map-template" class="h-96 w-full rounded-2xl"></div>
+
             </div>
-            <div class="pl-3 pt-2 flex flex-row flex-col">
-                <p class="font-h6 text-gray-600">{{direccion}} {{direccionNum}}, {{ciudad}}, {{provincia}}</p>
-            </div>
-            <div class="pl-3 pt-8 flex flex-row flex-col">
-                <p class="font-h2">El alojamiento ofrece</p>
-            </div>
-            <div class="flex pl-3 pt-6">
-                <div class="flex flex-row flex-col">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                    </svg>
-                </div>
+            <div class="mt-16">
+                <h2 class="text-black text-3xl font-semibold">El alojamiento ofrece</h2>
+                <div class="flex pl-3 pt-6">
+                    <div class="flex flex-row flex-col">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                        </svg>
+                    </div>
                 <p class="pl-3 font-h5">
                     Wi-Fi en zonas comunes
                 </p>
@@ -64,16 +211,7 @@
                 </div>
             </div>
         </div>
-        <div class="h-auto w-full bg-white lg:flex-grow flex flex-col gap-2 px-4 py-6 lg:py-0 mt-6 items-end pr-36">
-            <div class="h-40 w-40 pr-3" alt="">
-                <img src="/src/img/mapa/affec54749806d2752556ed7e77378c6-mapa-de-ubicacion-colorido-icono-trazo.png" class="flex flex-row">
-            </div>
-            <div class="flex flex-row flex-col ">
-                <form action="https://www.google.com.ar/maps/place/Hotel+Hilton+Buenos+Aires/@-34.6075733,-58.3638528,17z/data=!4m12!1m2!2m1!1shotel+hilton!3m8!1s0x0:0x3945c8c351477a54!5m2!4m1!1i2!8m2!3d-34.6059285!4d-58.3634941!15sCgxob3RlbCBoaWx0b24iA4gBAVoOIgxob3RlbCBoaWx0b26SAQVob3RlbA">
-                    <input type="submit" class="mb-2 btn-filled-darker py-2 w-42 text-white" value="Buscar en el mapa">
-                </form>
-            </div>
-        </div>
+        
     </div>
 </div>
 

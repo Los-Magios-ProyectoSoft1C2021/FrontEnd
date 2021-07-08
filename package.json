@@ -17,11 +17,13 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@googlemaps/js-api-loader": "^1.12.1",
         "@splidejs/splide": "^2.4.21",
         "connect-livereload": "^0.6.1",
         "express": "^4.17.1",
         "handlebars": "^4.7.7",
         "jquery": "^3.6.0",
+        "leaflet-map": "^0.2.1",
         "livereload": "^0.9.3",
         "path-to-regexp": "^6.2.0",
         "query-string": "^7.0.0",

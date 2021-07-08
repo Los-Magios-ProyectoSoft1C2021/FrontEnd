@@ -5,6 +5,8 @@ import Home from "./views/home/Home.js";
 import SearchHotels from "./views/search_hotels/SearchHotels.js";
 import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
 import RegisterUsuario from "./views/register_usuario/RegisterUsuario.js";
+import BookingUser from "./views/booking_user/BookingUser.js";
+import BookingConfirm from "./views/bookin_confirm/BookingConfirm.js";
 
 
 const routes = [
@@ -37,6 +39,18 @@ const routes = [
         path: "/register",
         action: async () => {
             return new RegisterUsuario();
+        },
+    },
+    {
+        path: "/booking_user",
+        action: async () => {
+            return new BookingUser();
+        },
+    },
+    {
+        path: "/booking_confirm",
+        action: async () => {
+            return new BookingConfirm();
         },
     },
     {

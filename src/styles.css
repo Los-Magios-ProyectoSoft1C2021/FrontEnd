@@ -3,6 +3,12 @@
 @import "tailwindcss/utilities";
 @import "@splidejs/splide/dist/css/splide.min.css";
 @import '/node_modules/vanillajs-datepicker/dist/css/datepicker.min.css';
+@import '/node_modules/leaflet/dist/leaflet.css';
+
+
+#map-template {
+}
+
 
 a * {
     pointer-events: none;
@@ -73,6 +79,7 @@ button * {
         @apply bg-indigo-300;
     }
 
+    
     .font-h1 {
         @apply text-3xl font-semibold tracking-tighter;
     }
@@ -121,6 +128,10 @@ button * {
         @apply text-lg font-semibold tracking-normal bg-red-600 hover:bg-red-800 font-h2 px-2 py-0 rounded-3xl hover:shadow-sm transition duration-200;
     }
 
+    .btn-filled-white{
+        @apply bg-white hover:bg-white   border-b-4 border-gray-300 hover:border-gray-400  px-2 py-0 rounded-3xl
+    }
+
     .btn-filled-darker {
         @apply text-lg font-semibold tracking-normal bg-indigo-700 hover:bg-indigo-700 font-h2 px-2 py-0 rounded-3xl hover:shadow-sm transition duration-200;
     }
@@ -154,8 +165,17 @@ button * {
         @apply bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl;
     }
 
+    .conteiner-booking{
+        @apply bg-green-200 max-w-lg mx-auto p-2 md:p-4 rounded-md shadow-2xl flex flex-col items-center justify-center
+    }
+    .conteiner-booking-confirm{
+        @apply bg-primary-darker max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl
+    }
+    .conteiner-date{
+        @apply bg-gray-200 max-w-lg mx-auto p-2 md:p-4 rounded-md shadow-2xl 
+    }
     .label-login {
-        @apply block text-gray-700 text-sm font-h6 mb-2 ml-3;
+        @apply block text-gray-800 text-sm font-h6 mb-2 ml-3;
     }
 
     .input-login {
