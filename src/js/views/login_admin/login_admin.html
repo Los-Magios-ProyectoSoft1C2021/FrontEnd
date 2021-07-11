@@ -1,0 +1,29 @@
+<div class="login-admin-background w-auto h-full flex flex-col">
+    <div class="mt-6 mb-24">
+        <main class="container-login-admin">
+            <section>
+                <h3 class="font-h6 text-2xl text-white">Bienvenido</h3>
+                <p class="font-h6 text-black pt-2 ">Ingrese su cuenta de administrador.</p>
+            </section>
+
+            <section class="mt-10">
+                <form class="flex flex-col" method="POST" action="#">
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="email">Email</label>
+                        <input type="text" id="email" class="input-login-admin" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="password">Contraseña</label>
+                        <input type="password" id="contreseña" class="input-login-admin" required="" minlength="8" maxlength="10">
+                    </div>
+                    <div class="flex justify-start">
+                        <a href="#" class="link-button-password text-white">Olvidaste tu contreseña?</a>
+                    </div>
+                    <div class="flex flex-grow flex-row items-center justify-center">
+                        <button class="bg-primary hover:bg-primary-darker text-white font-h6 py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full" type="submit">Ingresar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</div> 
