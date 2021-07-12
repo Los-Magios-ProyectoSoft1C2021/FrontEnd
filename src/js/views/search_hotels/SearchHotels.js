@@ -8,8 +8,8 @@ import { getHotelesByPage, getDestinos } from "../../services/MicroservicioHotel
 import { Datepicker } from 'vanillajs-datepicker'
 
 import { navigateTo } from "../../routes";
-import { convertTextToDestino } from "../../utils/convert_text_to_destino";
-import { convertCategoryToId } from "../../utils/convert_category_to_id";
+import { convertTextToDestino } from "../../utils/ConvertTextToDestino";
+import { convertCategoryToId } from "../../utils/ConvertCategoryToId";
 
 const datePickerConfig = (date) => {
     return {

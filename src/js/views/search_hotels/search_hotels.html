@@ -1,103 +1,107 @@
-<div class="lg:container mx-auto mb-36 mt-6">
-    <div class="flex lg:flex-row flex-col">
-        <div class="lg:w-72 lg:mt-12 w-auto h-full px-4 py-3 mx-4 rounded bg-primary-darker lg:flex-none">
-            <form action="">
-                <h3 class="font-h2 text-white mb-2">Buscar</h3>
+<div class="bg-gray-100 pt-12 pb-16">
+    <div class="lg:container mx-auto">
+        <div class="flex md:flex-row flex-col">
+            <div class="md:w-72 md:mt-10 w-auto h-full px-4 py-3 mx-4 rounded bg-primary-darker md:flex-none">
+                <form action="">
+                    <h3 class="font-h2 text-white mb-2">Buscar</h3>
 
-                <h6 class="mb-1 font-h6 text-white">Destino</h6>
-                <div class="inline-block relative w-full mb-4">
-                    <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
-                        <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                        </svg>
+                    <h6 class="mb-1 font-h6 text-white">Destino</h6>
+                    <div class="inline-block relative w-full mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                            </svg>
+                        </div>
+                        <input type="text"
+                            class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
+                            id="destino" placeholder="Destino" list="destinos_list">
+                        <datalist id="destinos_list">
+                        </datalist>
                     </div>
-                    <input type="text"
-                        class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded" id="destino"
-                        placeholder="Destino" list="destinos_list">
-                    <datalist id="destinos_list">
-                    </datalist>
-                </div>
 
-                <h6 class="mb-1 font-h6 text-white">Fecha de entrada</h6>
-                <div class="inline-block relative w-full mb-4">
-                    <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
-                        <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
-                        </svg>
+                    <h6 class="mb-1 font-h6 text-white">Fecha de entrada</h6>
+                    <div class="inline-block relative w-full mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
+                            </svg>
+                        </div>
+                        <input type="text" placeholder="Entrada"
+                            class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
+                            id="fecha_entrada">
+                        </input>
                     </div>
-                    <input type="text" placeholder="Entrada"
-                        class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
-                        id="fecha_entrada">
-                    </input>
-                </div>
 
-                <h6 class="mb-1 font-h6 text-white">Fecha de salida</h6>
-                <div class="inline-block relative w-full lg:w-auto mb-4">
-                    <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
-                        <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
-                        </svg>
+                    <h6 class="mb-1 font-h6 text-white">Fecha de salida</h6>
+                    <div class="inline-block relative w-full lg:w-auto mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
+                            </svg>
+                        </div>
+                        <input type="text" placeholder="Salida"
+                            class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
+                            id="fecha_salida">
+                        </input>
                     </div>
-                    <input type="text" placeholder="Salida"
-                        class="block appearance-none pl-11 pr-8 w-full input-container-on-primary rounded"
-                        id="fecha_salida">
-                    </input>
-                </div>
 
-                <h6 class="mb-1 font-h6 text-white">Cantidad de estrellas</h6>
-                <div class="inline-block relative w-full lg:w-full mb-4">
-                    <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
-                        <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                        </svg>
+                    <h6 class="mb-1 font-h6 text-white">Cantidad de estrellas</h6>
+                    <div class="inline-block relative w-full lg:w-full mb-4">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                            </svg>
+                        </div>
+                        <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded"
+                            id="estrellas">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
                     </div>
-                    <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded"
-                        id="estrellas">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
-                </div>
 
-                <h6 class="mb-1 font-h6 text-white">Tipo de habitación</h6>
-                <div class="inline-block relative w-full">
-                    <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
-                        <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                        </svg>
+                    <h6 class="mb-1 font-h6 text-white">Tipo de habitación</h6>
+                    <div class="inline-block relative w-full">
+                        <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
+                            <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                            </svg>
+                        </div>
+                        <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded"
+                            id="tipo_habitacion">
+                            <option>Cualquiera</option>
+                            <option>Indivual</option>
+                            <option>Matrimonial</option>
+                            <option>Suite</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
                     </div>
-                    <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded"
-                        id="tipo_habitacion">
-                        <option>Cualquiera</option>
-                        <option>Indivual</option>
-                        <option>Matrimonial</option>
-                        <option>Suite</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
-                </div>
 
-                <input type="button" class="mb-2 mt-6 btn-filled py-2 w-full cursor-pointer text-white" id="search"
-                    value="Buscar">
-            </form>
-        </div>
-        <div class="h-auto w-full bg-white lg:flex-grow flex flex-col gap-2 px-4 py-6 lg:py-0" id="list_hotels">
+                    <input type="button" class="mb-2 mt-6 btn-filled py-2 w-full cursor-pointer text-white" id="search"
+                        value="Buscar">
+                </form>
+            </div>
+            <div class="h-auto w-full md:flex-grow flex flex-col px-4 py-6 md:py-0" id="list_hotels">
 
+            </div>
         </div>
     </div>
 </div>

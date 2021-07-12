@@ -6,8 +6,8 @@ import Splide from "@splidejs/splide";
 import { data } from "autoprefixer";
 
 import { navigateTo } from "../../routes.js";
-import { convertCategoryToId } from "../../utils/convert_category_to_id.js";
-import { convertTextToDestino } from "../../utils/convert_text_to_destino.js";
+import { convertCategoryToId } from "../../utils/ConvertCategoryToId";
+import { convertTextToDestino } from "../../utils/ConvertTextToDestino";
 
 const updateDestinos = async (e) => {
     let busquedaDestino = document.querySelector("#destino");

@@ -1,13 +1,24 @@
-<div class="lg:container mx-auto my-12">
-    <div class="my-4">
-        <div>
-            <h1 class="font-h1 tracking-normal">{{nombre}}</h1>
-            <p class="font-h6 text-gray-600">{{direccion}} {{direccionNum}}, {{ciudad}}, {{provincia}}</p>
+<div class="bg-indigo-700 py-4">
+    <div class="lg:container mx-auto flex flex-col">
+        <h1 class="font-h1 text-white tracking-normal">{{nombre}}</h1>
+        <div class="mt-1 flex flex-row flex-grow">
+            {{#times estrellas}}
+            <svg class="text-yellow-500 h-4 w-4" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+            </svg>
+            {{/times}}
         </div>
     </div>
-
-    <div class="flex flex-row space-x-2">
-        <div class="w-3/4">
+</div>
+<div class="bg-indigo-600 py-2">
+    <div class="lg:container mx-auto">
+        <p class="font-h6 text-gray-200">{{direccion}} {{direccionNum}}, {{ciudad}}, {{provincia}}</p>
+    </div>
+</div>
+<div class="lg:container mx-auto">
+    <div class="flex flex-row space-x-2 py-6">
+        <div class="flex flex-col relative w-3/4">
             <div class="primary-slider w-full">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -21,12 +32,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="secondary-slider ">
-                <div class="splide__track h-36">
-                    <ul class="splide__list flex flex-row ">
+            <div class="secondary-slider">
+                <div class="splide__track">
+                    <ul class="splide__list flex flex-row">
                         {{#each fotos}}
                         <li class="splide__slide">
-                            <div class=" w-auto h-full bg-white">
+                            <div class="w-full h-full bg-white">
                                 <img src="{{imagenUrl}}" alt="" class="w-full h-full object-cover object-center">
                             </div>
                         </li>
@@ -35,10 +46,11 @@
                 </div>
             </div>
         </div>
-        <div class="w-1/4 px-4 py-3 mb-4 rounded bg-primary-darker lg:flex-none">
-            <form action="">
-                <h3 class="font-h2 text-white mb-2">Rerserva</h3>
-                <h6 class="mb-1 font-h6 text-white">Fecha de entrada</h6>
+        <div class="w-1/4 px-5 py-2 mb-2 rounded bg-white flex">
+            <div class="flex flex-col flex-grow">
+                <h3 class="font-h2 text-black">Rerservar</h3>
+                <p class="font-h6 text-gray-700 pb-6">Ingrese los datos de su reserva</p>
+                <h6 class="mb-1 font-h6 text-800">Fecha de entrada</h6>
                 <div class="inline-block relative w-full mb-4">
                     <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
                         <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -52,7 +64,7 @@
                     </input>
                 </div>
 
-                <h6 class="mb-1 font-h6 text-white">Fecha de salida</h6>
+                <h6 class="mb-1 font-h6 text-gray-800">Fecha de salida</h6>
                 <div class="inline-block relative w-full mb-4">
                     <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
                         <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -65,7 +77,7 @@
                         id="fecha_salida">
                     </input>
                 </div>
-                <h6 class="mb-1 font-h6 text-white">Tipo de habitación</h6>
+                <h6 class="mb-1 font-h6 text-gray-800">Tipo de habitación</h6>
                 <div class="inline-block relative w-full">
                     <div class="absolute inset-y-0 left-0 mx-1 flex items-center px-2 text-primary-lighter">
                         <svg class="fill-current h-5 w-5" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -74,7 +86,6 @@
                         </svg>
                     </div>
                     <select class="block appearance-none pl-10 pr-8 w-full input-container-on-primary rounded">
-                        <option>Cualquiera</option>
                         <option>Indivual</option>
                         <option>Matrimonial</option>
                         <option>Suite</option>
@@ -85,35 +96,83 @@
                         </svg>
                     </div>
                 </div>
-
-                <input type="button" class="mb-2 mt-6 btn-filled py-2 w-full text-white" id="destino" value="Reservar">
-            </form>
+                <div class="flex-grow"></div>
+                <input type="button" class="mt-12 btn-filled py-2 w-full text-white cursor-pointer" id="destino"
+                    value="Reservar">
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="mt-16 space-y-2">
-        <div class="pb-2">
-            <h4 class="text-black font-h1">Ubicación en el mapa</h4>
-            <div class="flex space-x-1">
-                <span class="font-h6 text-black">Direccion:</span>
-                <span class="font-h6 text-gray-700">{{direccion}} {{direccionNum}}, {{ciudad}},
-                    {{provincia}}</span>
+<div class="bg-gray-100">
+    <div class="lg:container mx-auto py-8">
+        <div class="bg-white border border-gray-300 rounded-2xl my-6">
+            <div class="divide-y divide-gray-400 px-5 pt-4 pb-3">
+                <div class="py-3">
+                    <h4 class="text-black font-h1">Ubicación en el mapa</h4>
+                </div>
+                <div class="flex flex-col space-y-1 py-3">
+                    <div class="flex flex-row space-x-1">
+                        <p class="font-h6 text-black">Direccion:</p>
+                        <span class="font-h6 text-gray-700">{{direccion}} {{direccionNum}}, {{ciudad}},
+                            {{provincia}}</span>
+                    </div>
+                    <div class="flex flex-row space-x-1">
+                        <p class="font-h6 text-black">Coordenadas:</p>
+                        <span class="font-h6 text-gray-700">{{latitud}}, {{longitud}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map-template" class="h-96 w-full rounded-b-2xl"></div>
+        </div>
+
+        <div class="bg-white border border-gray-300 rounded-2xl my-6">
+            <div class="divide-y divide-gray-400 px-6 py-4">
+                <div class="py-3">
+                    <h4 class="text-black font-h1">El alojamiento ofrece</h4>
+                </div>
+                <div class="py-3 px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    {{#each servicios}}
+                    <li class="mx-2 py-0.5">
+                        <p class="pr-2 font-h6 text-gray-700">{{this}}</p>
+                    </li>
+                    {{/each}}
+                </div>
             </div>
         </div>
 
-        <div id="map-template" class="h-96 w-full rounded-2xl"></div>
-    </div>
+        <div class="bg-white border border-gray-300 rounded-2xl my-6">
+            <div class="divide-y divide-gray-400 px-6 py-4">
+                <div class="py-3">
+                    <h4 class="text-black font-h1">Contacto</h4>
+                </div>
+                <div class="py-3">
+                    <div class="flex flex-col space-y-0.5">
+                        <div class="flex space-x-1">
+                            <span class="font-h6 text-black">Teléfono: </span>
+                            <span class="font-h6 text-gray-700">{{telefono}}</span>
+                        </div>
+                        <div class="flex space-x-1">
+                            <span class="font-h6 text-black">Correo: </span>
+                            <span class="font-h6 text-gray-700">{{correo}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="mt-16 space-y-2">
-        <div class="pb-2">
-            <h4 class="text-black font-h1">El alojamiento ofrece</h4>
-        </div>
-        <div class="px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {{#each servicios}}
-            <li class="mx-2 py-0.5">
-                <p class="font-h6 text-gray-700">{{this}}</p>
-            </li>
-            {{/each}}
+        <div class="flex flex-col items-center justify-center mt-12 mb-4 space-y-3">
+            <h1 class="font-h1 text-black">¿Estás listo para reservar?</h1>
+            <a href="#" class="link-primary font-h3 text-center flex">
+                <p>Ir arriba</p>
+                <svg style="width:32px;height:32px" viewBox="0 0 24 24" class="pt-1">
+                    <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+                </svg>
+            </a>
         </div>
     </div>
+</div>
+
+
 </div>
