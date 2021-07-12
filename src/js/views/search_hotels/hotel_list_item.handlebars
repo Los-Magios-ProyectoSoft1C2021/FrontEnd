@@ -1,10 +1,15 @@
 <div class="flex flex-row lg:mb-2">
+    {{#if city}}
     <h2 class="font-h2 text-primary-darker flex-grow ">Mostrando resultados para {{city}}</h2>
+    {{else}}
+    <h2 class="font-h2 text-primary-darker flex-grow ">Mostrando los resultados de la búsqueda</h2>
+    {{/if}}
     <h4 class="font-h6 text-primary-darker flex-shrink mb-0 mt-auto">Página {{currentPage}} de {{pageCount}}</h4>
 </div>
 
 {{#each hotels}}
-<div class="bg-white rounded overflow-hidden border border-gray-300 hover:shadow flex flex-row">
+<div class="card-hotel-item bg-white rounded overflow-hidden border border-gray-200 cursor-pointer hover:shadow-lg transform-all duration-300 flex flex-row"
+    hotel-id="{{hotelId}}">
     <div class="h-32 w-32 flex-none">
         <img src="{{foto}}" alt="" class="h-full w-full object-cover">
     </div>
@@ -42,13 +47,13 @@
 </div>
 {{/each}}
 
-<div class="text-primary-dark flex items-center mr-auto ml-auto pt-4">
+<div class="text-primary-dark flex items-center mr-auto ml-auto mt-8">
     <div>
         {{#each navPages}}
         <a page-link="{{page}}"
-            class="font-h4 hover:bg-gray-700 hover:text-gray-300 mr-1 ml-1 pr-3 pl-4 py-3 rounded page-item text-center items-center"
+            class="nav-hotels-list font-h4 hover:bg-indigo-600 hover:text-gray-100 transform-all duration-100 mr-1 ml-1 pr-3 pl-4 py-3 rounded page-item text-center items-center"
             href="{{url}}">
-            {{page}}
+            {{text}}
         </a>
         {{/each}}
     </div>

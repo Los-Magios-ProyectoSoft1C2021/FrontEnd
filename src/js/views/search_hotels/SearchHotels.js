@@ -1,79 +1,15 @@
 import AbstractView from "../AbstractView";
 
 import view from "./search_hotels.html";
+const template = require('./hotel_list_item.handlebars');
+
+import { getHotelesByPage, getDestinos } from "../../services/MicroservicioHotel";
 
 import { Datepicker } from 'vanillajs-datepicker'
-import { param } from "jquery";
 
-const template = require('./hotel_list_item.handlebars');
-const url = "https://localhost:44309/api/hotel/"
-
-const updateDestinos = async (e) => {
-    let busquedaDestino = document.querySelector("#destino");
-    let text = busquedaDestino.value;
-
-
-    if (text.length < 3) {
-        return;
-    } else {
-        let response = await fetch(`https://localhost:44309/api/busqueda?q=${text}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            cache: 'default',
-        });
-
-        let json = await response.json();
-        const datalist = document.querySelector("#destinos_list");
-        datalist.innerHTML = "";
-
-        const list = JSON.parse(JSON.stringify(json));
-        list.forEach(element => {
-            let ciudad = element['ciudad'];
-            let provincia = element['provincia'];
-
-            let option = `${ciudad}, ${provincia}`;
-            console.log(option);
-
-            let optionElement = document.createElement("option");
-            optionElement.value = option;
-
-            datalist.appendChild(optionElement);
-        });
-    }
-}
-
-const getPage = async (ciudad, estrellas, pageNumber) => {
-    let params = new URLSearchParams();
-
-    if (ciudad != null && ciudad.length > 0)
-        params.append("ciudad", ciudad);
-
-    if (estrellas !== undefined && estrellas > 0)
-        params.append("estrellas", estrellas);
-
-    if (pageNumber !== undefined && pageNumber > 0)
-        params.append("page", pageNumber);
-    else
-        params.append("page", 1);
-
-    let url = `https://localhost:44309/api/hotel/?${params.toString()}`;
-    console.log(url);
-
-    let response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        cache: 'default',
-    });
-
-    let json = await response.json();
-    return json;
-}
+import { navigateTo } from "../../routes";
+import { convertTextToDestino } from "../../utils/convert_text_to_destino";
+import { convertCategoryToId } from "../../utils/convert_category_to_id";
 
 const datePickerConfig = (date) => {
     return {
@@ -89,6 +25,9 @@ export default class extends AbstractView {
     feDatepicker;
     fsDatepicker;
     hotelsList;
+    tipoHabitacionSelector;
+    estrellasSelector;
+    searchButton;
 
     currentDestino;
     currentTipo;
@@ -120,18 +59,9 @@ export default class extends AbstractView {
         if ('page' in params)
             this.currentPage = params.page;
 
+        console.log(this.currentTipo);
+
         this.setTitle("Booking UNAJ");
-
-        document.body.addEventListener("click", (e) => {
-            if (e.target.matches("[page-link]")) {
-                e.preventDefault();
-                history.pushState(undefined, undefined, e.target.href);
-
-                this.clearHotelsContent();
-                this.currentPage = e.target.text.trim();
-                this.setHotelsContent(this.currentPage);
-            }
-        });
     }
 
     async getHtml() {
@@ -145,6 +75,9 @@ export default class extends AbstractView {
     async executeViewScript() {
         this.initDatePickers();
         this.initDestinoInputText();
+        this.initTipoHabitacionSelector();
+        this.initEstrellasSelector();
+        this.initSearchButton();
 
         this.setHotelsContent(this.currentPage);
     }
@@ -162,11 +95,92 @@ export default class extends AbstractView {
 
     initDestinoInputText() {
         this.destinoInputText = document.querySelector("#destino");
-        this.destinoInputText.addEventListener("input", updateDestinos);
+        this.destinoInputText.addEventListener("input", async () => {
+            let text = this.destinoInputText.value;
+
+            const destinosList = document.querySelector("#destinos_list");
+            destinosList.innerHTML = "";
+
+            if (text.length > 3) {
+                let result = await getDestinos(text);
+
+                const list = JSON.parse(JSON.stringify(result));
+                list.forEach(element => {
+                    let ciudad = element['ciudad'];
+                    let provincia = element['provincia'];
+
+                    let option = `${ciudad}, ${provincia}`;
+                    console.log(option);
+
+                    let optionElement = document.createElement("option");
+                    optionElement.value = option;
+
+                    destinosList.appendChild(optionElement);
+                });
+            }
+        });
+    }
+
+    initTipoHabitacionSelector() {
+        this.tipoHabitacionSelector = document.querySelector("#tipo_habitacion");
+    }
+
+    initEstrellasSelector() {
+        this.estrellasSelector = document.querySelector("#estrellas");
+    }
+
+    initSearchButton() {
+        this.searchButton = document.querySelector("#search");
+        console.log(this.searchButton);
+
+        this.searchButton.addEventListener("click", (e) => {
+            console.log("clicked");
+
+            let destino = this.destinoInputText.value;
+            destino = convertTextToDestino(destino);
+
+            let dateStart = this.feDatepicker.getDate("yyyy-mm-dd");
+            let dateEnd = this.fsDatepicker.getDate("yyyy-mm-dd");
+            let tipoHabitacion = convertCategoryToId(this.tipoHabitacionSelector.value);
+            let estrellas = this.estrellasSelector.value;
+
+            const params = new URLSearchParams();
+
+            if (destino != null && destino.length > 0)
+                params.append("destino", destino);
+
+            if (dateStart != null)
+                params.append("entrada", dateStart);
+
+            if (dateEnd != null)
+                params.append("salida", dateEnd);
+
+            if (tipoHabitacion != null)
+                params.append("tipo", tipoHabitacion);
+
+            if (estrellas != null)
+                params.append("estrellas", estrellas);
+
+            const path = "/buscar?" + params.toString();
+            console.log(path);
+
+            history.pushState(undefined, undefined, path);
+            navigateTo(location.pathname);
+        });
     }
 
     async setHotelsContent(pageNumber) {
-        let result = await getPage(this.currentDestino, this.currentEstrellas, pageNumber);
+        let result = await getHotelesByPage({
+            ciudad: this.currentDestino,
+            fechaInicio: this.currentFechaEntrada,
+            fechaFin: this.currentFechaSalida,
+            estrellas: this.currentEstrellas,
+            categoria: this.currentTipo,
+            page: pageNumber
+        });
+
+        console.log(result);
+
         const htmlHotels = template({
             city: this.currentDestino,
             hotels: result.data,
@@ -177,6 +191,30 @@ export default class extends AbstractView {
 
         this.hotelsList = document.getElementById("list_hotels");
         this.hotelsList.innerHTML = htmlHotels;
+
+        let cardsHoteles = document.querySelectorAll(".card-hotel-item");
+
+        cardsHoteles.forEach(element => {
+            element.addEventListener("click", (e) => {
+                const hotelId = e.target.closest(".card-hotel-item").getAttribute("hotel-id");
+
+                history.pushState(undefined, undefined, `/hotel/${hotelId}`);
+                navigateTo(location.pathname);
+            });
+        })
+
+        let navPages = document.querySelectorAll(".nav-hotels-list");
+
+        navPages.forEach(element => {
+            element.addEventListener("click", (e) => {
+                e.preventDefault();
+                history.pushState(undefined, undefined, e.target.href);
+
+                this.clearHotelsContent();
+                this.currentPage = e.target.getAttribute("page-link");
+                this.setHotelsContent(this.currentPage);
+            })
+        })
     }
 
     clearHotelsContent() {
@@ -189,48 +227,46 @@ export default class extends AbstractView {
     getNavPages(currentPage, pageCount) {
         let navPages = [];
 
-        let i = currentPage - 1;
-        if (currentPage == pageCount)
-            i = currentPage - 2;
+        const params = new URLSearchParams();
 
-        while (navPages.length < 4) {
-            let page = i;
-            i += 1;
+        if (this.currentDestino !== undefined && this.currentDestino.length > 0)
+            params.append("destino", this.currentDestino);
 
-            if (page <= 0) continue;
+        if (this.currentFechaEntrada != null)
+            params.append("entrada", this.currentFechaEntrada);
 
-            const params = new URLSearchParams();
-            params.append("page", page);
+        if (this.currentFechaSalida != null)
+            params.append("salida", this.currentFechaSalida);
 
-            if (this.currentDestino !== undefined && this.currentDestino.length > 0)
-                params.append("destino", this.currentDestino);
-
-            if (this.currentFechaEntrada != null)
-                params.append("entrada", this.currentFechaEntrada);
-
-            if (this.currentFechaSalida != null)
-                params.append("salida", this.currentFechaSalida);
-
-            let url = `/buscar/?${params.toString()}`
-
-            if (navPages.length == 0) {
-                navPages.push({
-                    url: url,
-                    page: "<",
-                })
-            }
+        if (currentPage > 1) {
+            params.delete("page");
+            params.append("page", currentPage - 1);
 
             navPages.push({
-                url: url,
-                page: page,
-            })
+                text: "< Anterior",
+                url: `/buscar/?${params.toString()}`,
+                page: currentPage - 1,
+            });
+        }
 
-            if (navPages.length == 4 || page == pageCount) {
-                navPages.push({
-                    url: url,
-                    page: ">",
-                })
-            }
+        params.delete("page");
+        params.append("page", currentPage);
+
+        navPages.push({
+            text: currentPage,
+            url: `/buscar/?${params.toString()}`,
+            page: currentPage,
+        })
+
+        if (currentPage < pageCount) {
+            params.delete("page");
+            params.append("page", currentPage + 1);
+
+            navPages.push({
+                text: "Siguiente >",
+                url: `/buscar/?${params.toString()}`,
+                page: currentPage + 1,
+            });
         }
 
         return navPages;

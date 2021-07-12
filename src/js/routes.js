@@ -1,6 +1,7 @@
 import UniversalRouter from "universal-router";
-import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
+import queryString from "query-string";
 
+import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
 import Home from "./views/home/Home.js";
 import SearchHotels from "./views/search_hotels/SearchHotels.js";
 import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
@@ -9,7 +10,6 @@ import BookingUser from "./views/booking_user/BookingUser.js";
 import BookingConfirm from "./views/bookin_confirm/BookingConfirm.js";
 import AddHotelAdmin from "./views/add_hotel_admin/AddHotelAdmin.js";
 import LoginAdmin from "./views/login_admin/LoginAdmin.js";
-
 
 const routes = [
     {
@@ -21,14 +21,16 @@ const routes = [
     {
         path: "/buscar",
         action: async (context) => {
-            console.log(context.query);
+            console.log(`query:`);
+            console.log(context.query)
             return new SearchHotels(context.query);
         },
     },
     {
-        path: "/hotel",
-        action: async () => {
-            return new DetailsHotels();
+        path: "/hotel/:id",
+        action: async (context) => {
+            console.log(context.params.id);
+            return new DetailsHotels(context.params);
         },
     },
     {
@@ -101,4 +103,22 @@ const routes = [
     },
 ];
 
-export { routes };
+const router = new UniversalRouter(routes);
+
+const navigateTo = async () => {
+    // get the class and create the view
+    let view = await router.resolve({
+        pathname: location.pathname,
+        query: queryString.parse(location.search)
+    });
+
+    // change the content of the page
+    let content = document.querySelector("#app");
+    content.innerHTML = "";
+    content.appendChild(await view.getHtml());
+
+    // execute the scripts for this view
+    view.executeViewScript();
+}
+
+export { navigateTo };
