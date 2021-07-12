@@ -9,6 +9,8 @@ import BookingUser from "./views/booking_user/BookingUser.js";
 import BookingConfirm from "./views/bookin_confirm/BookingConfirm.js";
 import AddHotelAdmin from "./views/add_hotel_admin/AddHotelAdmin.js";
 import LoginAdmin from "./views/login_admin/LoginAdmin.js";
+import ListHotelAdmin from "./views/list_hotel_admin/ListHotelAdmin.js";
+import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
 
 
 const routes = [
@@ -65,6 +67,18 @@ const routes = [
         path: "/login_admin",
         action: async () => {
             return new LoginAdmin();
+        },
+    },
+    {
+        path: "/modify_hotel_admin",
+        action: async () => {
+            return new ModifyHotelAdmin();
+        },
+    },
+    {
+        path: "/list_hotel_admin",
+        action: async () => {
+            return new ListHotelAdmin();
         },
     },
     {

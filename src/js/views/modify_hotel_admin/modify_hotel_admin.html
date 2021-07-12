@@ -1,0 +1,70 @@
+<div class="modifyhotel-background w-auto h-full flex flex-col">
+    <div class="mt-6 mb-24">
+        <main class="container-modifyhotel">
+            <section>
+                <h3 class="font-h6 text-2xl text-white">Modificar Hotel</h3>
+                <p class="font-h6 text-black pt-2">Ingresa los datos a modificar del hotel </p>
+            </section>
+    
+            <section class="mt-10">
+                <form class="flex flex-col" method="POST" action="#">
+                
+                    <div class="mb-6 pt-3  rounded bg-gray-200">
+                        <label class="label-login" for="nombreHotel">Nombre</label>
+                        <input type="text" id="nombreHotel" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                    </div>
+                    <div class="mb-6 pt-3  rounded bg-gray-200">
+                        <label class="label-login" for="provincia">Provincia</label>
+                        <input type="text" id="provincia" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                    </div>
+
+        
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="direccion">Dirección</label>
+                        <input type="text" id="direccion" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="15" minlength="4">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="dirNumero">Número</label>
+                        <input type="text" id="dirNumero" class="input-login" required="" maxlength="10" minlength="2">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="latitud">Latitud</label>
+                        <input type="text" id="latitud" class="input-login" required="" maxlength="30" minlength="6">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="longitud">Longitud</label>
+                        <input type="tel" id="longitud" class="input-login" required="" maxlength="30" minlength="6">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="codPostal">Codigo Postal</label>
+                        <input type="text" id="codPostal" class="input-login" required="" maxlength="5">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="estrellas">Estrellas</label>
+                        <input type="number" id="estrellas" class="input-login" required="" min="1" max="5">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="email">Correo</label>
+                        <input type="text" id="email" class="input-login" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    </div>
+                    <div class="mb-6 pt-3 rounded bg-gray-200">
+                        <label class="label-login" for="telefono">Telefono</label>
+                        <input type="tel" id="telefono" class="input-login" required="" pattern="[0-9]{4}-[0-9]{4}">
+                    </div>
+                    <div class="mb-6 pt-3  rounded bg-gray-200">
+                        <label class="label-login" for="obvDireccion">Obvservaciones de dirección</label>
+                        <input type="text" id="obvDireccion" class="input-login" required="" pattern="[a-zA-Z]+" maxlength="50" minlength="20">
+                    </div>                        
+                    <div class="flex flex-grow flex-row items-center justify-center">
+                        <button class="bg-primary hover:bg-primary-darker text-white font-h6 py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full" type="submit">Modificar hotel</button>
+                    </div>
+                        
+                </form>
+            </section>
+        </main>
+    </div>
+</div>

@@ -21,9 +21,15 @@ button * {
 .main-background {
     background: url("/src/img/argentina/3333140.jpg") no-repeat center;
 }
+
 .addhotel-background{
-    background: url("/src/img/hoteles/thumb-1920-368326.jpg") no-repeat center;
+    background: url("/src/img/hoteles/fotohoteladap5.png") no-repeat center;
 }
+
+.modifyhotel-background{
+    background: url("/src/img/hoteles/hotelmodify1.jpg") no-repeat center;
+}
+
 .login-admin-background{
     background: url("/src/img/hoteles/hotelLogAd.jpg") no-repeat center;
 }
@@ -181,9 +187,15 @@ button * {
     .container-addhotel{
         @apply bg-gradient-to-r from-indigo-400 md:from-indigo-600 max-w-lg  mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl ;
     }
+
+    .container-modifyhotel{
+        @apply bg-gradient-to-r from-indigo-400 md:from-yellow-600 max-w-lg  mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl ;
+    }
+
     .conteiner-booking{
         @apply bg-green-200 max-w-lg mx-auto p-2 md:p-4 rounded-md shadow-2xl flex flex-col items-center justify-center
     }
+
     .conteiner-booking-confirm{
         @apply bg-primary-darker max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl
     }
