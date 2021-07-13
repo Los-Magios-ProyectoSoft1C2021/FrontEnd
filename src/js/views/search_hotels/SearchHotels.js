@@ -197,6 +197,7 @@ export default class extends AbstractView {
         cardsHoteles.forEach(element => {
             element.addEventListener("click", (e) => {
                 const hotelId = e.target.closest(".card-hotel-item").getAttribute("hotel-id");
+                console.log(hotelId);
 
                 history.pushState(undefined, undefined, `/hotel/${hotelId}`);
                 navigateTo(location.pathname);

@@ -1,4 +1,5 @@
 import { MICROSERVICIO_HOTEL } from "./MicroservicioConsts"
+import { getToken } from "./token";
 
 const getHotelesByPage = async ({
     ciudad,
@@ -34,7 +35,8 @@ const getHotelesByPage = async ({
     let response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken()}`
         },
         mode: "cors",
         cache: "default"
@@ -50,7 +52,8 @@ const getHotelDetailsById = async (hotelId) => {
     let response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken()}`
         },
         mode: "cors",
         cache: "default"
@@ -66,7 +69,8 @@ const getDestinos = async (query) => {
     let response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${getToken()}`
         },
         mode: "cors",
         cache: "default"
@@ -89,6 +93,11 @@ const postHotel = async ({
     telefono,
     correo
 }) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_HOTEL}api/hotel`;
     console.log(`url: ${url}`);
 
@@ -96,7 +105,8 @@ const postHotel = async ({
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
             nombre: nombre,
@@ -133,6 +143,11 @@ const putHotel = async ({
     telefono,
     correo
 }) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_HOTEL}api/hotel`;
     console.log(`url: ${url}`);
 
@@ -140,7 +155,8 @@ const putHotel = async ({
         method: "PUT",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
             nombre: nombre,
@@ -164,13 +180,19 @@ const putHotel = async ({
 };
 
 const getHabitacionesByHotelId = async (hotelId) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_HOTEL}api/hotel/${hotelId}/habitacion`;
     console.log(`url: ${url}`);
 
     let response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         mode: "cors",
         cache: "default"
@@ -180,6 +202,11 @@ const getHabitacionesByHotelId = async (hotelId) => {
 };
 
 const postHabitacionByHotelId = async ({ hotelId, nombre, categoriaId }) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_HOTEL}api/hotel/${hotelId}/habitacion`;
     console.log(`url: ${url}`);
 
@@ -187,7 +214,8 @@ const postHabitacionByHotelId = async ({ hotelId, nombre, categoriaId }) => {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
             nombre: nombre,

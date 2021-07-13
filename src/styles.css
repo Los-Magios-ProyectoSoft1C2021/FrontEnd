@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 
 body {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans' sans-serif;
 }
 
 a * {
@@ -27,6 +27,7 @@ button * {
 .login-admin-background{
     background: url("/src/img/hoteles/hotelLogAd.jpg") no-repeat center;
 }
+
 @layer components {
     .text-primary {
         @apply text-gray-800;

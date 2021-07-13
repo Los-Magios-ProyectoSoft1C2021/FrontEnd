@@ -1,4 +1,5 @@
 import { MICROSERVICIO_RESERVAS } from "./MicroservicioConsts";
+import { getToken } from "./token";
 
 const postReserva = async ({
     hotelId,
@@ -6,12 +7,18 @@ const postReserva = async ({
     fechaInicio,
     fechaFin
 }) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_RESERVAS}api/reserva`;
     let response = await fetch(url, {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
             hotelId: hotelId,
@@ -27,11 +34,17 @@ const postReserva = async ({
 };
 
 const getReservasUser = async () => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_RESERVAS}api/reserva/usuario`;
     let response = await fetch(url, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         mode: "cors",
         cache: "default"

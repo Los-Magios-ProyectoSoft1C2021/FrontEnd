@@ -40,31 +40,31 @@ const routes = [
         },
     },
     {
-        path: "/register",
+        path: "/registrarse",
         action: async () => {
             return new RegisterUsuario();
         },
     },
     {
-        path: "/booking_user",
+        path: "/usuario/reservas",
         action: async () => {
             return new BookingUser();
         },
     },
     {
-        path: "/booking_confirm",
+        path: "/reserva/confirmar",
         action: async () => {
             return new BookingConfirm();
         },
     },
     {
-        path: "/add_hotel_admin",
+        path: "/admin/add-hotel",
         action: async () => {
             return new AddHotelAdmin();
         },
     },
     {
-        path: "/login_admin",
+        path: "/admin/login",
         action: async () => {
             return new LoginAdmin();
         },
@@ -116,6 +116,8 @@ const navigateTo = async () => {
     let content = document.querySelector("#app");
     content.innerHTML = "";
     content.appendChild(await view.getHtml());
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     // execute the scripts for this view
     view.executeViewScript();

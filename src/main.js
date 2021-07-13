@@ -3,6 +3,10 @@ import css from "./styles.css";
 import "regenerator-runtime/runtime";
 
 import { navigateTo } from "./js/routes";
+import { getToken } from "./js/services/token";
+
+import MenuLogin from "./js/views/menu_login/MenuLogin";
+import MenuUsuario from "./js/views/menu_user/MenuUsuario";
 
 window.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
@@ -27,3 +31,13 @@ window.addEventListener("hashchange", (e) => {
     console.log(`location changed: ${location.pathname}`);
     navigateTo();
 });
+
+
+const elemMenuUser = document.querySelector("#menu-user");
+const token = getToken();
+
+if (token == null) {
+    new MenuLogin().init();
+} else {
+    new MenuUsuario().init();
+}

@@ -1,7 +1,12 @@
 import { MICROSERVICIO_USUARIO } from "./MicroservicioConsts";
-import { saveToken } from "./token";
+import { getToken, saveToken } from "./token";
 
 const getUsuarios = async () => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
     const url = `${MICROSERVICIO_USUARIO}api/usuario`;
     let response = await fetch(url, {
         method: "GET",
@@ -12,7 +17,7 @@ const getUsuarios = async () => {
         cache: "default"
     });
 
-    return response.json();
+    return await response.json();
 };
 
 const registerUser = async ({
@@ -24,7 +29,7 @@ const registerUser = async ({
     correo,
     telefono,
     nacionalidad,
-    imagen
+    imagen = "/img/user.png"
 }) => {
     const url = `${MICROSERVICIO_USUARIO}api/usuario`;
     let response = await fetch(url, {
@@ -39,7 +44,7 @@ const registerUser = async ({
             apellido: apellido,
             nombreUsuario: nombreUsuario,
             contraseña: contraseña,
-            dni: dni,
+            dni: parseInt(dni),
             correo: correo,
             telefono: telefono,
             nacionalidad: nacionalidad,
@@ -49,7 +54,12 @@ const registerUser = async ({
         cache: "default"
     });
 
-    return response.json();
+    let json = await response.json();
+
+    if ('token' in json)
+        saveToken(json.token);
+
+    return json;
 };
 
 const loginUser = async ({ nombreUsuario, contraseña }) => {
@@ -68,7 +78,7 @@ const loginUser = async ({ nombreUsuario, contraseña }) => {
         cache: "default"
     });
 
-    let json = response.json;
+    let json = await response.json();
 
     if ('token' in json)
         saveToken(json.token);
@@ -76,4 +86,25 @@ const loginUser = async ({ nombreUsuario, contraseña }) => {
     return json;
 };
 
-export { getUsuarios, registerUser, loginUser }
+const getUsuarioInfo = async () => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
+    const url = `${MICROSERVICIO_USUARIO}api/usuario/id`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        mode: "cors",
+        cache: "default"
+    });
+
+    return await response.json();
+}
+
+export { getUsuarios, registerUser, loginUser, getUsuarioInfo }
