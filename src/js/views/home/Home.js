@@ -5,6 +5,10 @@ import { Datepicker } from 'vanillajs-datepicker'
 import Splide from "@splidejs/splide";
 import { data } from "autoprefixer";
 
+import { navigateTo } from "../../routes.js";
+import { convertCategoryToId } from "../../utils/ConvertCategoryToId";
+import { convertTextToDestino } from "../../utils/ConvertTextToDestino";
+
 const updateDestinos = async (e) => {
     let busquedaDestino = document.querySelector("#destino");
     let text = busquedaDestino.value;
@@ -122,11 +126,11 @@ export default class extends AbstractView {
             console.log("clicked");
 
             let destino = this.destinoInputText.value;
-            destino = destino.substring(0, destino.indexOf(","));
+            destino = convertTextToDestino(destino);
 
             let dateStart = this.feDatepicker.getDate("yyyy-mm-dd");
             let dateEnd = this.fsDatepicker.getDate("yyyy-mm-dd");
-            let tipoHabitacion = this.tipoHabitacionSelector.value;
+            let tipoHabitacion = convertCategoryToId(this.tipoHabitacionSelector.value);
 
             const params = new URLSearchParams();
 
@@ -139,15 +143,16 @@ export default class extends AbstractView {
             if (dateEnd != null)
                 params.append("salida", dateEnd);
 
-            if (tipoHabitacion != "Todos" && tipoHabitacion != "Tipo")
+            if (tipoHabitacion != null)
                 params.append("tipo", tipoHabitacion);
 
             const path = "/buscar?" + params.toString();
             console.log(path);
 
             //window.location.href = path;
-            location.hash = "";
+            //location.hash = "";
             history.pushState(undefined, undefined, path);
+            navigateTo(location.pathname);
         })
     }
 }

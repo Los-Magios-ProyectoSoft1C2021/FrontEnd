@@ -1,6 +1,7 @@
 import UniversalRouter from "universal-router";
-import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
+import queryString from "query-string";
 
+import DetailsHotels from "./views/details_hotel/DetailsHotels.js";
 import Home from "./views/home/Home.js";
 import SearchHotels from "./views/search_hotels/SearchHotels.js";
 import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
@@ -14,7 +15,6 @@ import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
 import BookingAdmin from "./views/booking_admin/BookingAdmin.js";
 import BookingUserList from "./views/booking_user_list/BookingUserList.js";
 
-
 const routes = [
     {
         path: "/",
@@ -25,14 +25,16 @@ const routes = [
     {
         path: "/buscar",
         action: async (context) => {
-            console.log(context.query);
+            console.log(`query:`);
+            console.log(context.query)
             return new SearchHotels(context.query);
         },
     },
     {
-        path: "/hotel",
-        action: async () => {
-            return new DetailsHotels();
+        path: "/hotel/:id",
+        action: async (context) => {
+            console.log(context.params.id);
+            return new DetailsHotels(context.params);
         },
     },
     {
@@ -42,13 +44,13 @@ const routes = [
         },
     },
     {
-        path: "/register",
+        path: "/registrarse",
         action: async () => {
             return new RegisterUsuario();
         },
     },
     {
-        path: "/booking_user",
+        path: "/usuario/reservas",
         action: async () => {
             return new BookingUser();
         },
@@ -60,19 +62,19 @@ const routes = [
         },
     },
     {
-        path: "/booking_confirm",
+        path: "/reserva/confirmar",
         action: async () => {
             return new BookingConfirm();
         },
     },
     {
-        path: "/add_hotel_admin",
+        path: "/admin/add-hotel",
         action: async () => {
             return new AddHotelAdmin();
         },
     },
     {
-        path: "/login_admin",
+        path: "/admin/login",
         action: async () => {
             return new LoginAdmin();
         },
@@ -129,4 +131,24 @@ const routes = [
     },
 ];
 
-export { routes };
+const router = new UniversalRouter(routes);
+
+const navigateTo = async () => {
+    // get the class and create the view
+    let view = await router.resolve({
+        pathname: location.pathname,
+        query: queryString.parse(location.search)
+    });
+
+    // change the content of the page
+    let content = document.querySelector("#app");
+    content.innerHTML = "";
+    content.appendChild(await view.getHtml());
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // execute the scripts for this view
+    view.executeViewScript();
+}
+
+export { navigateTo };

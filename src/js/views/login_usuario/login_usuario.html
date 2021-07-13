@@ -1,30 +1,31 @@
-<div class="mt-6 mb-24">
-    <main class="container-login">
+<div class="pt-6 pb-24 bg-gray-100">
+    <main class="container-login border border-gray-300">
         <section>
             <h3 class="font-h6 text-2xl">Bienvenido</h3>
-            <p class="font-h6 text-gray-500 pt-2">Ingresa a tu cuenta.</p>
+            <p class="font-h6 text-gray-700 pt-2">Ingresa sus datos</p>
         </section>
 
         <section class="mt-10">
-            <form class="flex flex-col" method="POST" action="#">
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="label-login" for="email">Email</label>
-                    <input type="text" id="email" class="input-login" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                </div>
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="label-login" for="password">Contraseña</label>
-                    <input type="password" id="contreseña" class="input-login" required="" minlength="8" maxlength="10">
-                </div>
-                <div class="flex justify-end">
-                    <a href="#" class="link-button-password">Olvidaste tu contreseña?</a>
-                </div>
-                <div class="flex flex-grow flex-row items-center justify-center">
-                    <button class="bg-primary hover:bg-primary-darker text-white font-h6 py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full" type="submit">Ingresar</button>
-                </div>
-            </form>
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <label class="label-login" for="text">Nombre de usuario</label>
+                <input type="text" id="txt-nombre-usuario" class="input-login" required="">
+            </div>
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <label class="label-login" for="password">Contraseña</label>
+                <input type="password" id="txt-contraseña" class="input-login" required="" minlength="8">
+            </div>
+            <div class="flex justify-end">
+                <a href="#" class="link-button-password">Olvidaste tu contreseña?</a>
+            </div>
+            <div class="flex flex-grow flex-row items-center justify-center">
+                <button
+                    class="bg-primary hover:bg-primary-darker text-white font-h4 font-semibold py-3 rounded shadow-lg hover:shadow-xl transition duration-200 w-full"
+                    id="btn-submit">Ingresar</button>
+            </div>
         </section>
     </main>
     <div class="max-w-lg mx-auto text-center mt-12 mb-6">
-        <p class="font-h6">No tenes cuenta? <a href="#" class="font-h6 hover:underline">Registrate</a>.</p>
+        <p class="font-h6">¿No tenés cuenta? <a href="/registrarse" class="font-h6 hover:underline"
+                data-link>Registrate</a>.</p>
     </div>
 </div>
