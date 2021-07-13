@@ -11,6 +11,8 @@ import AddHotelAdmin from "./views/add_hotel_admin/AddHotelAdmin.js";
 import LoginAdmin from "./views/login_admin/LoginAdmin.js";
 import ListHotelAdmin from "./views/list_hotel_admin/ListHotelAdmin.js";
 import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
+import BookingAdmin from "./views/booking_admin/BookingAdmin.js";
+import BookingUserList from "./views/booking_user_list/BookingUserList.js";
 
 
 const routes = [
@@ -52,6 +54,12 @@ const routes = [
         },
     },
     {
+        path: "/booking_user_list",
+        action: async () => {
+            return new BookingUserList();
+        },
+    },
+    {
         path: "/booking_confirm",
         action: async () => {
             return new BookingConfirm();
@@ -79,6 +87,12 @@ const routes = [
         path: "/list_hotel_admin",
         action: async () => {
             return new ListHotelAdmin();
+        },
+    },
+    {
+        path: "/booking_admin",
+        action: async () => {
+            return new BookingAdmin();
         },
     },
     {

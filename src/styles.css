@@ -30,6 +30,10 @@ button * {
     background: url("/src/img/hoteles/hotelmodify1.jpg") no-repeat center;
 }
 
+.confirmbooking-background{
+    background: url("/src/img/hoteles/hotelconfirm.jpg") no-repeat center;
+}
+
 .login-admin-background{
     background: url("/src/img/hoteles/hotelLogAd.jpg") no-repeat center;
 }
@@ -189,7 +193,7 @@ button * {
     }
 
     .container-modifyhotel{
-        @apply bg-gradient-to-r from-indigo-400 md:from-yellow-600 max-w-lg  mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl ;
+        @apply bg-gradient-to-r from-indigo-400 md:from-yellow-600 max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl ;
     }
 
     .conteiner-booking{
