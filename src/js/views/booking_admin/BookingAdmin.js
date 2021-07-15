@@ -1,5 +1,6 @@
 import { navigateTo } from "../../routes";
-import { getReservas, getReservasUser, putReserva } from "../../services/MicroservicioReservas";
+import { getReservas, putReserva } from "../../services/MicroservicioReservas";
+import { getRol } from "../../services/token";
 import { ISODateToDDMMYYY } from "../../utils/DateFormatConvert";
 import AbstractView from "../AbstractView";
 
@@ -116,10 +117,10 @@ export default class extends AbstractView {
             this.executeViewScript();
 
             btnConfirmarBaja.disabled = false;
-            
+
         });
 
-        
+
         let btnCancelarBaja = document.querySelector("#btn-cancelar-baja-admin");
         btnCancelarBaja.addEventListener("click", async (e) => {
             this.containerCancelEvents.classList.add("hidden");

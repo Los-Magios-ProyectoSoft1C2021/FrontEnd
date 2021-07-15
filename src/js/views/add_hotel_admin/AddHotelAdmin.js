@@ -4,7 +4,7 @@ import AbstractView from "../AbstractView";
 
 import view from "./add_hotel_admin.html";
 
-export default class extends AbstractView{
+export default class extends AbstractView {
     modalCargarHotel;
     msjCargarHotel;
 
@@ -32,7 +32,7 @@ export default class extends AbstractView{
         super(params);
     }
 
-    async getHtml(){
+    async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
         divElement.id = "hotel_admin";
@@ -40,13 +40,13 @@ export default class extends AbstractView{
         return divElement;
     }
 
-    executeViewScript(){
+    executeViewScript() {
         this.initElements();
         this.initBtnAddHotel();
 
     }
-    
-    initElements(){
+
+    initElements() {
         this.modalCargarHotel = document.querySelector('#modal-carga-hotel-admin');
         this.msjCargarHotel = document.querySelector('#msj-carga-hotel-admin')
 
@@ -63,7 +63,7 @@ export default class extends AbstractView{
         this.txtObvservacionesDireccion = document.querySelector('#txt-obvservaciones-direccion');
         this.txtCorreo = document.querySelector('#txt-email');
 
-        this.numHabitacionIndividual= document.querySelector('#habitacion-individual');
+        this.numHabitacionIndividual = document.querySelector('#habitacion-individual');
         this.numHabitacionMatrimonial = document.querySelector('#habitacion-matrimonial');
         this.numHabitacionSuite = document.querySelector('#habitacion-suite');
 
@@ -71,12 +71,12 @@ export default class extends AbstractView{
 
         this.btnAddHotel = document.querySelector('#btn-add-hotel')
 
-        
+
     }
 
-    initBtnAddHotel(){
+    initBtnAddHotel() {
         this.btnAddHotel.addEventListener("click", async (e) => {
-            
+
             this.btnAddHotel.disabled = true;
 
             let nombre = this.txtNombreHotel.value;
@@ -91,65 +91,65 @@ export default class extends AbstractView{
             let estrellas = this.numEstrellas.value;
             let telefono = this.telTelefono.value;
             let correo = this.txtCorreo.value;
-            
+
 
             let fotoHotel = this.txtFoto.value;
             let fotoDescripcion = "--";
 
-            let valIndividual= this.numHabitacionIndividual.value;
+            let valIndividual = this.numHabitacionIndividual.value;
             let individual = "Individual";
 
             let valMatrimonial = this.numHabitacionMatrimonial.value;
             let matrimonial = "Matrimonial";
 
             let valSuite = this.numHabitacionSuite.value;
-            let suite  ="Suite";
+            let suite = "Suite";
 
             let response = await postHotel({
-                nombre:nombre,
-                longitud:longitud,
-                latitud:latitud,
-                provincia:provincia,
-                ciudad:ciudad,
-                direccion:direccion,
-                direccionNum:direccionNum,
-                direccionObservaciones:direccionObservaciones,
-                codigoPostal:codigoPostal,
-                estrellas:estrellas,
-                telefono:telefono,
-                correo:correo,
+                nombre: nombre,
+                longitud: longitud,
+                latitud: latitud,
+                provincia: provincia,
+                ciudad: ciudad,
+                direccion: direccion,
+                direccionNum: direccionNum,
+                direccionObservaciones: direccionObservaciones,
+                codigoPostal: codigoPostal,
+                estrellas: estrellas,
+                telefono: telefono,
+                correo: correo,
             });
 
             let json = await response.json();
 
-            for(let i = 1; i<=valMatrimonial; i++ ) {
+            for (let i = 1; i <= valMatrimonial; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:matrimonial + i,
+                    nombre: matrimonial + i,
                     categoriaId: 2
                 })
             }
-            for(let i = 1; i<=valIndividual; i++ ) {
+            for (let i = 1; i <= valIndividual; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:individual + i,
+                    nombre: individual + i,
                     categoriaId: 1
                 })
             }
-            for(let i = 1; i<=valSuite; i++ ) {
+            for (let i = 1; i <= valSuite; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:suite + i,
+                    nombre: suite + i,
                     categoriaId: 3
                 })
             }
 
-            let requestFoto = await postFoto ({
+            let requestFoto = await postFoto({
                 hotelId: json.hotelId,
                 imagenUrl: fotoHotel,
                 descripcion: fotoDescripcion
             })
-            
+
             this.btnAddHotel.disabled = false;
 
             if (response.ok) {
@@ -159,7 +159,7 @@ export default class extends AbstractView{
             }
 
             console.log(response);
-            
+
             this.modalCargarHotel.classList.remove("hidden");
             setTimeout(() => this.modalCargarHotel.classList.add("hidden"), 2500);
         })
