@@ -89,11 +89,12 @@ export default class extends AbstractView {
 
         let btnConfirmarBaja = document.querySelector("#btn-confirmar-baja");
         btnConfirmarBaja.addEventListener("click", async (e) => {
+            btnConfirmarBaja.disabled = true;
             let response = await putReserva({
                 reservaId: reserva.reservaId,
                 estadoReservaId: 3
             });
-            console.log(response);
+            btnConfirmarBaja.disabled = false;
 
             this.containerCancelEvents.classList.add("hidden");
             this.containerConfirmarBaja.classList.add("hidden");

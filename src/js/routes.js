@@ -152,7 +152,7 @@ const navigateTo = async () => {
     content.innerHTML = "";
     content.appendChild(await view.getHtml());
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 250);
 
     // execute the scripts for this view
     view.executeViewScript();
