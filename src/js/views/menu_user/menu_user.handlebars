@@ -1,7 +1,7 @@
 <div class="mr-0 ml-auto flex flex-row items-end space-x-4 lg:h-24">
 
     <!-- publicar -->
-    <a href="/publicar" data-link
+    <a href="/publicar" data-link======={{#if isAdmin}} <a href="/admin/add-hotel" data-link
         class="h-full flex flex-row border-b-4 hover:border-indigo-700 link transition-all duration-300 cursor-pointer">
         <div class="my-auto flex flex-col items-center text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
@@ -12,7 +12,9 @@
             <p class="font-subtitle2 select-none">Publicar</p>
         </div>
     </a>
+    {{#if isAdmin}}
 
+    {{else}}
     <!-- user reservas -->
     <a href="/usuario/reservas" data-link
         class="h-full flex flex-row border-b-4 hover:border-indigo-700 link transition-all duration-300 cursor-pointer">
@@ -25,6 +27,7 @@
             <p class="font-subtitle2 select-none">Mis reservas</p>
         </div>
     </a>
+    {{/if}}
 
     <!-- user info -->
     <div

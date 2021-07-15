@@ -56,7 +56,7 @@ const routes = [
         },
     },
     {
-        path: "/booking_user_list",
+        path: "/usuario/reservas-list",
         action: async () => {
             return new BookingUserList();
         },
@@ -74,19 +74,25 @@ const routes = [
         },
     },
     {
-        path: "/modify_hotel_admin",
+        path: "/admin/login",
         action: async () => {
-            return new ModifyHotelAdmin();
+            return new LoginAdmin();
         },
     },
     {
-        path: "/list_hotel_admin",
-        action: async () => {
-            return new ListHotelAdmin();
+        path: "/admin/modify-hotel/:id",
+        action: async (context) => {
+            return new ModifyHotelAdmin(context.params);
         },
     },
     {
-        path: "/booking_admin",
+        path: "/admin/list-hotel",
+        action: async (context) => {
+            return new ListHotelAdmin(context.query);
+        },
+    },
+    {
+        path: "/admin/reservas",
         action: async () => {
             return new BookingAdmin();
         },
@@ -139,7 +145,7 @@ const navigateTo = async () => {
     content.innerHTML = "";
     content.appendChild(await view.getHtml());
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 250);
 
     // execute the scripts for this view
     view.executeViewScript();
