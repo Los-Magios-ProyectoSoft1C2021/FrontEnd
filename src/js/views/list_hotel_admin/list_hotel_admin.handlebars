@@ -1,6 +1,6 @@
 <div class="bg-gray-100 ">
     <div class="md:container mx-auto space-y-6">
-        <h1 class="font-h1 text-black ml-5">Hoteles</h1>
+        <h1 class="font-h1 text-black ml-6">Hoteles</h1>
 
         <!-- reservas -->
         <div class="space-y-1">
@@ -9,17 +9,17 @@
                 <div class="col-span-3 my-auto">
                     <h6 class="font-h6">Detalles del hotel</h6>
                 </div>
-                
+
                 <div class="col-span-1 my-auto text-center">
                     <h6 class="font-h6">Ciudad</h6>
                 </div>
                 <div class="col-span-1 text-center">
                     <h6 class="font-h6">Provincia</h6>
                 </div>
-                <div class="col-span-2 my-auto text-center">
+                <div class="col-span-1 my-auto text-center">
                     <h6 class="font-h6">Telefono</h6>
                 </div>
-                <div class="col-span-1 my-auto text-center">
+                <div class="col-span-2 my-auto text-center">
                     <h6 class="font-h6">Acciones</h6>
                 </div>
             </div>
@@ -32,20 +32,26 @@
                             <a href="/hotel/{{hotelId}}" data-link class="font-h4 link-primary">{{nombre}}</a>
                             <p class="font-subtitle">{{direccion}}</p>
                         </div>
-                        
+
                         <div class="col-span-1 my-auto text-center">
                             <p class="font-subtitle text-gray-800">{{ciudad}}</p>
                         </div>
                         <div class="col-span-1 my-auto text-center">
                             <p class="font-subtitle">{{provincia}} </p>
                         </div>
-                        <div class="col-span-2 my-auto text-center">
+                        <div class="col-span-1 my-auto text-center">
                             <p class="font-subtitle text-gray-800">{{telefono}}</p>
                         </div>
-                        <div class="col-span-1 flex justify-end">
+                        <div class="col-span-1 flex justify-end mr-1">
                             <button hotel-id="{{hotelId}}" type="submit"
                                 class="modificar-hotel w-full font-h6 bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 text-white px-3 py-2 focus:outline-none rounded disabled:opacity-70">
                                 Modificar hotel
+                            </button>
+                        </div>
+                        <div class="col-span-1 flex justify-end ml-1">
+                            <button hotel-id="{{hotelId}}" type="submit"
+                                class="reservas-hotel w-full font-h6 bg-indigo-700 hover:bg-indigo-800 transition-all duration-300 text-white px-3 py-2 focus:outline-none rounded disabled:opacity-70">
+                                Ver reservas
                             </button>
                         </div>
                     </div>

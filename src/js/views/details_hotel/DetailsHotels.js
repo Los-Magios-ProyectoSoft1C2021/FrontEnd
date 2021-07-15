@@ -7,7 +7,7 @@ import { Datepicker } from 'vanillajs-datepicker'
 import L, { marker } from "leaflet";
 import leafletmap from "leaflet-map";
 import { getHotelDetailsById } from "../../services/MicroservicioHotel";
-import { getToken } from "../../services/token";
+import { getRol } from "../../services/token";
 import { convertCategoryToId } from "../../utils/CategoryConvert";
 import { navigateTo } from "../../routes";
 
@@ -53,15 +53,19 @@ export default class extends AbstractView {
     async executeViewScript() {
         let result = await getHotelDetailsById(this.hotelId);
 
-        const token = getToken();
-        if (token != null)
-            result.login = true;
+        const rol = getRol();
+        if (rol == "Admin")
+            result.isAdmin = true;
+        else if (rol == "Usuario")
+            result.isUsuario = true;
+        else
+            result.notLogged = true;
 
         let view = template(result);
         this.container = document.querySelector("#details_hotel");
         this.container.innerHTML = view;
 
-        if (result.login) {
+        if (result.isUsuario) {
             this.initElements();
             this.initBtnReservar();
         }

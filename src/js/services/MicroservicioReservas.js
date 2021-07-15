@@ -129,4 +129,24 @@ const getReservasUser = async () => {
     return response.json();
 };
 
-export { postReserva, putReserva, getReservasUser, getReservas, postContacto }
+const getReservasByHotelId = async (hotelId) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
+    const url = `${MICROSERVICIO_RESERVAS}api/reserva/hotel/${hotelId}`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        mode: "cors",
+        cache: "default"
+    });
+
+    return await response.json();
+}
+
+export { postReserva, putReserva, getReservasUser, getReservas, getReservasByHotelId, postContacto }

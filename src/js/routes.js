@@ -15,6 +15,15 @@ import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
 import BookingAdmin from "./views/booking_admin/BookingAdmin.js";
 import BookingUserList from "./views/booking_user_list/BookingUserList.js";
 import ContacHotel from "./views/contact_hotel/ContacHotel.js";
+import BookingHotel from "./views/booking_hotel/BookingHotel.js";
+import QueHacemos from "./views/que-hacemos/que-hacemos.js";
+import Objetivos from "./views/objetivos/objetivos.js";
+import Mision from "./views/mision/mision.js";
+import Valores from "./views/valores/valores.js";
+import Accesibilidad from "./views/accesibilidad/accesibilidad.js";
+import TerminosCondiciones from "./views/terminos-condiciones/terminos-condiciones.js";
+import Privacidad from "./views/privacidad/privacidad.js";
+import Cookies from "./views/cookies/cookies.js";
 
 const routes = [
     {
@@ -99,6 +108,12 @@ const routes = [
         },
     },
     {
+        path: "/admin/reservas/hotel/:id",
+        action: async (context) => {
+            return new BookingHotel(context.params);
+        }
+    },
+    {
         path: "/publicar",
         action: async () => {
             return new ContacHotel();
@@ -106,35 +121,51 @@ const routes = [
     },
     {
         path: "/que-hacemos",
-        action: () => "que-hacemos",
+        action: async () => {
+            return new QueHacemos();
+        }
     },
     {
         path: "/objetivos",
-        action: () => "objetivos",
+        action: async () => {
+            return new Objetivos();
+        }
     },
     {
         path: "/mision",
-        action: () => "mision",
+        action: async () => {
+            return new Mision();
+        }
     },
     {
         path: "/valores",
-        action: () => "valores",
+        action: async () => {
+            return new Valores();
+        }
     },
     {
         path: "/accesibilidad",
-        action: () => "accesibilidad",
+        action: async () => {
+            return new Accesibilidad();
+        }
     },
     {
         path: "/terminos-condiciones",
-        action: () => "terminos-condiciones",
+        action: async () => {
+            return new TerminosCondiciones();
+        }
     },
     {
         path: "/privacidad",
-        action: () => "privacidad",
+        action: async () => {
+            return new Privacidad();
+        }
     },
     {
         path: "/cookies",
-        action: () => "cookies",
+        action: async () => {
+            return new Cookies();
+        }
     },
 ];
 
