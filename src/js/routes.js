@@ -74,12 +74,6 @@ const routes = [
         },
     },
     {
-        path: "/admin/login",
-        action: async () => {
-            return new LoginAdmin();
-        },
-    },
-    {
         path: "/modify_hotel_admin",
         action: async () => {
             return new ModifyHotelAdmin();
