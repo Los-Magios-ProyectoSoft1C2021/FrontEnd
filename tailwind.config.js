@@ -18,9 +18,12 @@ module.exports = {
         extend: {},
     },
     variants: {
+        opacity: ({ after }) => after(['disabled']),
         extend: {
-            ringColor: ['hover']
+            ringColor: ['hover'],
+            opacity: ['disabled'],
         },
     },
     plugins: [],
+
 };

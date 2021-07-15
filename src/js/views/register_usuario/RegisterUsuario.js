@@ -1,4 +1,6 @@
+import { navigateTo } from "../../routes";
 import { registerUser } from "../../services/MicroservicioUsuario";
+import { getToken } from "../../services/token";
 import AbstractView from "../AbstractView";
 import MenuUsuario from "../menu_user/MenuUsuario";
 
@@ -20,6 +22,12 @@ export default class extends AbstractView {
         super(params);
 
         this.setTitle("Registrarse - Booking UNAJ");
+
+        const token = getToken();
+        if (token != null) {
+            history.back();
+            setTimeout(() => navigateTo(), 100);
+        }
     }
 
     async getHtml() {
@@ -60,6 +68,7 @@ export default class extends AbstractView {
             let telefono = this.txtTelefono.value;
             let nacionalidad = this.txtTelefono.value;
 
+            this.btnSubmit.disabled = true;
             let result = await registerUser({
                 nombre: nombre,
                 apellido: apellido,
@@ -70,12 +79,13 @@ export default class extends AbstractView {
                 telefono: telefono,
                 nacionalidad: nacionalidad
             });
+            this.btnSubmit.disabled = false;
 
             if ('token' in result) {
                 new MenuUsuario().init();
 
                 history.back();
-                navigateTo(location.pathname);
+                setTimeout(() => navigateTo(), 100);
             }
         })
     }

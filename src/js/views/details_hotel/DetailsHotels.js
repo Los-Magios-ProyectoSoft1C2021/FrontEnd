@@ -3,17 +3,43 @@ import AbstractView from "../AbstractView";
 import view from "./details_hotels.html";
 
 import Splide from "@splidejs/splide";
+import { Datepicker } from 'vanillajs-datepicker'
 import L, { marker } from "leaflet";
 import leafletmap from "leaflet-map";
 import { getHotelDetailsById } from "../../services/MicroservicioHotel";
+import { getToken } from "../../services/token";
+import { convertCategoryToId } from "../../utils/CategoryConvert";
+import { navigateTo } from "../../routes";
 
 const template = require("./details_hotel.handlebars");
 
+const datePickerConfig = (date) => {
+    return {
+        autohide: "true",
+        format: "dd/mm/yyyy",
+        orientation: "bottom auto",
+        minDate: date
+    }
+};
+
 export default class extends AbstractView {
+    hotelId;
+
     container;
+
+    fsDatepìcker;
+    feDatepicker;
+    selectorTipoHabitacion;
+    btnReservar;
+
+    txtValidarFechaEntrada;
+    txtValidarFechaSalida;
 
     constructor(params) {
         super(params);
+
+        if ('id' in params)
+            this.hotelId = params.id;
     }
 
     async getHtml() {
@@ -23,16 +49,76 @@ export default class extends AbstractView {
 
         return divElement;
     }
+
     async executeViewScript() {
-        let result = await getHotelDetailsById(this.params.id);
-        console.log(result);
+        let result = await getHotelDetailsById(this.hotelId);
+
+        const token = getToken();
+        if (token != null)
+            result.login = true;
 
         let view = template(result);
         this.container = document.querySelector("#details_hotel");
         this.container.innerHTML = view;
 
+        if (result.login) {
+            this.initElements();
+            this.initBtnReservar();
+        }
+
         this.initMap({ nombre: result.nombre, latitud: result.latitud, longitud: result.longitud });
         this.initCarrusel();
+    }
+
+    initElements() {
+        let fechaEntrada = document.querySelector("#fecha-entrada");
+        let fechaSalida = document.querySelector("#fecha-salida");
+
+        this.feDatepicker = new Datepicker(fechaEntrada, datePickerConfig(new Date()));
+        this.fsDatepìcker = new Datepicker(fechaSalida, datePickerConfig(new Date()));
+
+        this.selectorTipoHabitacion = document.querySelector("#tipo-habitacion");
+        this.btnReservar = document.querySelector("#btn-reservar");
+
+        this.txtValidarFechaEntrada = document.querySelector("#validar-fecha-entrada");
+        this.txtValidarFechaSalida = document.querySelector("#validar-fecha-salida");
+    }
+
+    initBtnReservar() {
+        this.btnReservar.addEventListener("click", (e) => {
+            let fechaEntrada = this.feDatepicker.getDate("yyyy-mm-dd");
+            let fechaSalida = this.fsDatepìcker.getDate("yyyy-mm-dd");
+            let tipoHabitacion = convertCategoryToId(this.selectorTipoHabitacion.value);
+
+            let valid = true;
+
+            if (fechaEntrada == undefined) {
+                this.txtValidarFechaEntrada.classList.remove("hidden");
+                valid = false;
+            } else {
+                this.txtValidarFechaEntrada.classList.add("hidden");
+            }
+
+            if (fechaSalida == undefined) {
+                this.txtValidarFechaSalida.classList.remove("hidden");
+                valid = false;
+            } else {
+                this.txtValidarFechaSalida.classList.add("hidden");
+            }
+
+            if (!valid)
+                return;
+
+            let urlParams = new URLSearchParams();
+            urlParams.append("hotelId", this.hotelId);
+            urlParams.append("fechaEntrada", fechaEntrada);
+            urlParams.append("fechaSalida", fechaSalida);
+            urlParams.append("tipoHabitacion", tipoHabitacion);
+
+            let path = `/reserva/confirmar?${urlParams.toString()}`;
+            history.pushState(undefined, undefined, path);
+            navigateTo();
+        });
     }
 
     initMap({ nombre, latitud, longitud }) {

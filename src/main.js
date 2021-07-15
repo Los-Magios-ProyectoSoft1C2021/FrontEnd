@@ -33,9 +33,7 @@ window.addEventListener("hashchange", (e) => {
 });
 
 
-const elemMenuUser = document.querySelector("#menu-user");
 const token = getToken();
-
 if (token == null) {
     new MenuLogin().init();
 } else {

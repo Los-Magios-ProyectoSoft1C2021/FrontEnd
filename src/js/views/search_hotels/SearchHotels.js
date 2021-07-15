@@ -9,7 +9,7 @@ import { Datepicker } from 'vanillajs-datepicker'
 
 import { navigateTo } from "../../routes";
 import { convertTextToDestino } from "../../utils/ConvertTextToDestino";
-import { convertCategoryToId } from "../../utils/ConvertCategoryToId";
+import { convertCategoryToId } from "../../utils/CategoryConvert";
 
 const datePickerConfig = (date) => {
     return {
@@ -58,8 +58,6 @@ export default class extends AbstractView {
 
         if ('page' in params)
             this.currentPage = params.page;
-
-        console.log(this.currentTipo);
 
         this.setTitle("Booking UNAJ");
     }
@@ -164,8 +162,8 @@ export default class extends AbstractView {
             const path = "/buscar?" + params.toString();
             console.log(path);
 
-            history.pushState(undefined, undefined, path);
-            navigateTo(location.pathname);
+            history.pushState(undefined, undefined, "path");
+            navigateTo();
         });
     }
 

@@ -38,6 +38,10 @@ button * {
     background: url("/src/img/hoteles/hotelLogAd.jpg") no-repeat center;
 }
 
+.min-h-90vh {
+    min-height: 90vh;
+}
+
 @layer components {
     .text-primary {
         @apply text-gray-800;
@@ -145,7 +149,7 @@ button * {
     }
 
     .btn-filled-white{
-        @apply bg-white hover:bg-white   border-b-4 border-gray-300 hover:border-gray-400  px-2 py-0 rounded-3xl
+        @apply bg-white hover:bg-white border-b-4 border-gray-300 hover:border-gray-400  px-2 py-0 rounded-3xl
     }
 
     .btn-filled-darker {

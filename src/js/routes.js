@@ -7,7 +7,7 @@ import SearchHotels from "./views/search_hotels/SearchHotels.js";
 import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
 import RegisterUsuario from "./views/register_usuario/RegisterUsuario.js";
 import BookingUser from "./views/booking_user/BookingUser.js";
-import BookingConfirm from "./views/bookin_confirm/BookingConfirm.js";
+import BookingConfirm from "./views/booking_confirm/BookingConfirm.js";
 import AddHotelAdmin from "./views/add_hotel_admin/AddHotelAdmin.js";
 import LoginAdmin from "./views/login_admin/LoginAdmin.js";
 import ListHotelAdmin from "./views/list_hotel_admin/ListHotelAdmin.js";
@@ -64,15 +64,15 @@ const routes = [
         },
     },
     {
-        path: "/booking_user_list",
+        path: "/usuario/reservas-list",
         action: async () => {
             return new BookingUserList();
         },
     },
     {
         path: "/reserva/confirmar",
-        action: async () => {
-            return new BookingConfirm();
+        action: async (context) => {
+            return new BookingConfirm(context.query);
         },
     },
     {
@@ -88,19 +88,19 @@ const routes = [
         },
     },
     {
-        path: "/modify_hotel_admin",
-        action: async () => {
-            return new ModifyHotelAdmin();
+        path: "/admin/modify-hotel/:id",
+        action: async (context) => {
+            return new ModifyHotelAdmin(context.params);
         },
     },
     {
-        path: "/list_hotel_admin",
-        action: async () => {
-            return new ListHotelAdmin();
+        path: "/admin/list-hotel",
+        action: async (context) => {
+            return new ListHotelAdmin(context.query);
         },
     },
     {
-        path: "/booking_admin",
+        path: "/admin/reservas",
         action: async () => {
             return new BookingAdmin();
         },
@@ -169,7 +169,7 @@ const navigateTo = async () => {
     content.innerHTML = "";
     content.appendChild(await view.getHtml());
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 250);
 
     // execute the scripts for this view
     view.executeViewScript();
