@@ -5,6 +5,9 @@ import view from "./contact_hotel.html";
 
 export default class extends AbstractView{
 
+    modalContacto;
+    msjContacto;
+
     txtNombre;
     txtCorreo;
     txtMotivo;
@@ -27,6 +30,9 @@ export default class extends AbstractView{
     }
 
     initElements(){
+        this.modalContacto = document.querySelector('#modal-carga-send');
+        this.msjContacto = document.querySelector('#msj-carga-send')
+
         this.txtNombre = document.querySelector('#txt-nombre-contacto');
         this.txtCorreo = document.querySelector('#txt-email-contacto');
         this.txtMotivo = document.querySelector('#txt-motivo');
@@ -58,7 +64,16 @@ export default class extends AbstractView{
 
             this.btnSend.disabled = false;
             
+            if (response.ok) {
+                this.msjContacto.innerHTML = `Se envió su formulaio correctamente `;
+            } else {
+                this.msjContacto.innerHTML = `Ha ocurrido un error al intentar enviar su formulario`;
+            }
+
             console.log(response);
+
+            this.modalContacto.classList.remove("hidden");
+            setTimeout(() => this.modalContacto.classList.add("hidden"), 2500);
 
         })
     }
