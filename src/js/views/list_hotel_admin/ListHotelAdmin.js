@@ -6,7 +6,6 @@ const template = require('./list_hotel_admin.handlebars');
 import { getHotelesByPage } from "../../services/MicroservicioHotel";
 
 import { navigateTo } from "../../routes";
-import { getRol } from "../../services/token";
 
 export default class extends AbstractView {
 
