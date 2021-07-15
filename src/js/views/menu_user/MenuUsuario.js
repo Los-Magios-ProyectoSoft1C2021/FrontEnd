@@ -1,3 +1,4 @@
+import { navigateTo } from "../../routes";
 import { getUsuarioInfo } from "../../services/MicroservicioUsuario";
 import { deleteToken } from "../../services/token";
 import MenuLogin from "../menu_login/MenuLogin";
@@ -19,8 +20,6 @@ export default class MenuUsuario {
             this.menu.innerHTML = view;
 
             this.initButtonSalir();
-        } else {
-            console.log("user data not found");
         }
     }
 
@@ -29,6 +28,7 @@ export default class MenuUsuario {
         this.btnSalir.addEventListener("click", (e) => {
             deleteToken();
 
+            navigateTo();
             new MenuLogin().init();
         });
     }

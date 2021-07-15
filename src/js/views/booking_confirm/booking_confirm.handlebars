@@ -1,0 +1,108 @@
+<div class="bg-gray-100">
+
+    <div class="md:container mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 min-h-90vh">
+
+            <!-- detalles del hotel-->
+            <div class="col-span-2 px-8 py-14 h-full min-w-96">
+                <div class="h-full flex flex-col space-y-12">
+                    <!-- información del hotel -->
+                    <div class="space-y-4">
+                        <h2 class="font-h2 text-black"> Información del hotel</h2>
+
+                        <div class="bg-white rounded-lg border border-gray-200 ">
+                            <div class="border-l-8 border-indigo-700 rounded-l p-5 flex flex-row space-x-4">
+                                <img class="h-24 w-36 rounded-sm" src="{{hotel.fotos.1.imagenUrl}}" alt="">
+                                <div>
+                                    <h3 class="font-h3 text-black">{{hotel.nombre}}</h3>
+                                    <div class="flex mb-2">
+                                        {{#times hotel.estrellas}}
+                                        <svg class="text-yellow-500 h-4 w-4" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                                        </svg>
+                                        {{/times}}
+                                    </div>
+                                    <h5 class="font-p text-gray-700">
+                                        {{hotel.direccion}} {{hotel.direccionNum}}, {{hotel.ciudad}},
+                                        {{hotel.provincia}}
+                                    </h5>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- contacto -->
+                    <div class="space-y-4">
+                        <h2 class="font-h2 text-black">Contacto</h2>
+
+                        <div class="bg-white rounded-lg border border-gray-200">
+                            <div class="border-l-8 border-indigo-700 rounded-l p-5 flex flex-col space-y-2">
+                                <div class="flex space-x-2">
+                                    <p class="font-h6 text-black">Teléfono:</p>
+                                    <p class="font-p text-gray-700">{{hotel.telefono}}</p>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <p class="font-h6 text-black">Mail:</p>
+                                    <p class="font-p text-gray-700">{{hotel.correo}}</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h2 class="font-h2 text-black">El alojamiento ofrece</h2>
+
+                        <div class="bg-white rounded-lg border border-gray-200 ">
+                            <div
+                                class="border-l-8 border-indigo-700 rounded-l p-5 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+                                {{#each hotel.servicios}}
+                                <li class="mx-2 py-0.5 flex space-x-2">
+                                    <p class="select-none font-p text-gray-700">‣</p>
+                                    <p class="font-p text-gray-700">{{this}}</p>
+                                </li>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- detalles de la reserva -->
+            <div class="col-span-1 bg-gray-50 px-8 py-14 md:h-full border-r border-l border-gray-200">
+                <div class="h-full flex flex-col space-y-12 text-center">
+                    <h2 class="font-h2 text-black">Detalles de la reserva</h2>
+                    <div class="flex flex-col divide-y">
+                        <div class="flex flex-row justify-between px-2 py-4">
+                            <p class="font-p text-gray-700">Fecha entrada</p>
+                            <p class="font-p text-gray-800">{{fechaEntrada}}</p>
+                        </div>
+                        <div class="flex flex-row justify-between px-2 py-4">
+                            <p class="font-p text-gray-700">Fecha salida</p>
+                            <p class="font-p text-gray-800">{{fechaSalida}}</p>
+                        </div>
+                        <div class="flex flex-row justify-between px-2 py-4">
+                            <p class="font-p text-gray-700">Tipo de habitación</p>
+                            <p class="font-p text-gray-800">{{tipoHabitacion}}</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow"></div>
+                    <div class="hidden" id="estado-reserva">
+                        <h3 class="font-h3 text-gray-800" id="txt-estado-reserva">¡La reserva ha sido exitosa!</h3>
+                    </div>
+                    <button id="btn-confirmar-reserva"
+                        class="font-btn rounded-lg text-white p-3 bg-green-500 hover:bg-green-600 transition-all duration-300 focus:outline-none disabled:opacity-70">
+                        CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
