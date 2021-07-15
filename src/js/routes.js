@@ -106,7 +106,7 @@ const routes = [
         }
     },
     {
-        path: "/contacto",
+        path: "/publicar",
         action: async () => {
             return new ContacHotel();
         },

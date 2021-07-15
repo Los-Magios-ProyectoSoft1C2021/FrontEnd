@@ -160,6 +160,10 @@ export default class extends AbstractView {
                 params.append("estrellas", estrellas);
 
             const path = "/buscar?" + params.toString();
+
+            console.log(path);
+
+
             history.pushState(undefined, undefined, path);
             navigateTo();
         });
