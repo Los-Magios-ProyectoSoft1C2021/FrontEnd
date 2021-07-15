@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        {{#if login}}
+        {{#if isUsuario}}
         <div class="w-1/4 mb-1 rounded bg-white flex">
             <div class="flex flex-col flex-grow px-5 py-5 mx-2 border border-gray-300 rounded">
                 <h3 class="font-h2 text-black">Rerservar</h3>
@@ -126,7 +126,30 @@
                     value="Reservar">
             </div>
         </div>
-        {{else}}
+        {{/if}}
+        {{#if isAdmin}}
+        <div>
+            <div class="w-full mx-2 px-4 space-y-12 py-8 border border-gray-300 rounded">
+                <div class="w-full text-center space-y-2">
+                    <h3 class="font-h2 text-black">Administrador</h3>
+                    <h4 class="font-p text-gray-800">Puede realizar alguna de las siguientes opciones
+                    </h4>
+                </div>
+                <div class="w-full space-y-2 flex flex-col text-center">
+                    <a href="/admin/reservas/hotel/{{hotelId}}"
+                        class="btn-filled px-4 py-2 text-white font-button w-full" data-link>
+                        Ver reservas
+                    </a>
+                    <a href="/admin/modify-hotel/{{hotelId}}"
+                        class="btn-outlined text-lg font-semibold tracking-normal rounded-full px-4 py-2 font-button w-full"
+                        data-link>
+                        Modificar hotel
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{#if notLogged}}
         <div>
             <div class="w-full mx-2 px-4 space-y-12 py-8 border border-gray-300 rounded">
                 <div class="w-full text-center space-y-2">
@@ -150,6 +173,7 @@
             </div>
         </div>
         {{/if}}
+
     </div>
 </div>
 

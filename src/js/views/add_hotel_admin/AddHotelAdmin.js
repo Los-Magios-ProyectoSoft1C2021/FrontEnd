@@ -4,8 +4,10 @@ import AbstractView from "../AbstractView";
 
 import view from "./add_hotel_admin.html";
 
-export default class extends AbstractView{
-    
+export default class extends AbstractView {
+    modalCargarHotel;
+    msjCargarHotel;
+
     txtNombreHotel;
     txtProvincia;
     txtCiudad;
@@ -30,7 +32,7 @@ export default class extends AbstractView{
         super(params);
     }
 
-    async getHtml(){
+    async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
         divElement.id = "hotel_admin";
@@ -38,13 +40,15 @@ export default class extends AbstractView{
         return divElement;
     }
 
-    executeViewScript(){
+    executeViewScript() {
         this.initElements();
         this.initBtnAddHotel();
 
     }
-    /*
-    validationBtn(){
+
+    initElements() {
+        this.modalCargarHotel = document.querySelector('#modal-carga-hotel-admin');
+        this.msjCargarHotel = document.querySelector('#msj-carga-hotel-admin')
 
         this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
         this.txtProvincia = document.querySelector('#txt-provincia');
@@ -59,83 +63,7 @@ export default class extends AbstractView{
         this.txtObvservacionesDireccion = document.querySelector('#txt-obvservaciones-direccion');
         this.txtCorreo = document.querySelector('#txt-email');
 
-
-        var val=0;
-
-        if(this.txtNombreHotel == ""){
-            val ++;
-        }
-        if(this.txtProvincia == ""){
-            val ++;
-        }
-        if(this.txtCiudad == ""){
-            val ++;
-        }
-        if(this.txtDireccion == ""){
-            val ++;
-        }
-        if(this.txtNumero == ""){
-            val ++;
-        }
-        if(this.txtCodigoPostal == ""){
-            val ++;
-        }
-        if(this.txtLongitud == ""){
-            val ++;
-        }
-        if(this.txtLatitud == ""){
-            val ++;
-        }
-        if(this.telTelefono == ""){
-            val ++;
-        }
-        if(this.numEstrellas == ""){
-            val ++;
-        }
-        if(this.txtObvservacionesDireccion == ""){
-            val ++;
-        }
-        if(this.txtCorreo == ""){
-            val ++;
-        }
-        if(val == 0){
-            document.getElementById('btn-add-hotel').disabled = false;
-        }
-        else {
-            document.getElementById('btn-add-hotel').disabled = false;
-        }
-    }
-
-    enableBtn(){
-        document.querySelector('#txt-nombre-hotel').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-provincia').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-ciudad').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-direccion').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-direccion-numero').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-codigo-postal').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-longitud').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-latitud').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#num-estrellas').addEventListener("change",this.validationBtn);
-        document.querySelector('#tel-telefono').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-obvservaciones-direccion').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-email').addEventListener("keyup",this.validationBtn);
-    }
-    */
-    initElements(){
-        this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
-        this.txtProvincia = document.querySelector('#txt-provincia');
-        this.txtCiudad = document.querySelector('#txt-ciudad');
-        this.txtDireccion = document.querySelector('#txt-direccion');
-        this.txtNumero = document.querySelector('#txt-direccion-numero');
-        this.txtCodigoPostal = document.querySelector('#txt-codigo-postal');
-        this.txtLongitud = document.querySelector('#txt-longitud');
-        this.txtLatitud = document.querySelector('#txt-latitud');
-        this.numEstrellas = document.querySelector('#num-estrellas');
-        this.telTelefono = document.querySelector('#tel-telefono');
-        this.txtObvservacionesDireccion = document.querySelector('#txt-obvservaciones-direccion');
-        this.txtCorreo = document.querySelector('#txt-email');
-
-        this.numHabitacionIndividual= document.querySelector('#habitacion-individual');
+        this.numHabitacionIndividual = document.querySelector('#habitacion-individual');
         this.numHabitacionMatrimonial = document.querySelector('#habitacion-matrimonial');
         this.numHabitacionSuite = document.querySelector('#habitacion-suite');
 
@@ -143,12 +71,14 @@ export default class extends AbstractView{
 
         this.btnAddHotel = document.querySelector('#btn-add-hotel')
 
-        
+
     }
 
-    initBtnAddHotel(){
+    initBtnAddHotel() {
         this.btnAddHotel.addEventListener("click", async (e) => {
-            
+
+            this.btnAddHotel.disabled = true;
+
             let nombre = this.txtNombreHotel.value;
             let longitud = this.txtLongitud.value;
             let latitud = this.txtLatitud.value;
@@ -161,68 +91,77 @@ export default class extends AbstractView{
             let estrellas = this.numEstrellas.value;
             let telefono = this.telTelefono.value;
             let correo = this.txtCorreo.value;
-            
+
 
             let fotoHotel = this.txtFoto.value;
             let fotoDescripcion = "--";
 
-            let valIndividual= this.numHabitacionIndividual.value;
+            let valIndividual = this.numHabitacionIndividual.value;
             let individual = "Individual";
 
             let valMatrimonial = this.numHabitacionMatrimonial.value;
             let matrimonial = "Matrimonial";
 
             let valSuite = this.numHabitacionSuite.value;
-            let suite  ="Suite";
+            let suite = "Suite";
 
             let response = await postHotel({
-                nombre:nombre,
-                longitud:longitud,
-                latitud:latitud,
-                provincia:provincia,
-                ciudad:ciudad,
-                direccion:direccion,
-                direccionNum:direccionNum,
-                direccionObservaciones:direccionObservaciones,
-                codigoPostal:codigoPostal,
-                estrellas:estrellas,
-                telefono:telefono,
-                correo:correo,
+                nombre: nombre,
+                longitud: longitud,
+                latitud: latitud,
+                provincia: provincia,
+                ciudad: ciudad,
+                direccion: direccion,
+                direccionNum: direccionNum,
+                direccionObservaciones: direccionObservaciones,
+                codigoPostal: codigoPostal,
+                estrellas: estrellas,
+                telefono: telefono,
+                correo: correo,
             });
 
             let json = await response.json();
 
-            for(let i = 1; i<=valMatrimonial; i++ ) {
+            for (let i = 1; i <= valMatrimonial; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:matrimonial + i,
+                    nombre: matrimonial + i,
                     categoriaId: 2
                 })
             }
-            for(let i = 1; i<=valIndividual; i++ ) {
+            for (let i = 1; i <= valIndividual; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:individual + i,
+                    nombre: individual + i,
                     categoriaId: 1
                 })
             }
-            for(let i = 1; i<=valSuite; i++ ) {
+            for (let i = 1; i <= valSuite; i++) {
                 let responseHabitacion = await postHabitacionByHotelId({
                     hotelId: json.hotelId,
-                    nombre:suite + i,
+                    nombre: suite + i,
                     categoriaId: 3
                 })
             }
 
-            let requestFoto = await postFoto ({
+            let requestFoto = await postFoto({
                 hotelId: json.hotelId,
                 imagenUrl: fotoHotel,
                 descripcion: fotoDescripcion
             })
-            
-            
+
+            this.btnAddHotel.disabled = false;
+
+            if (response.ok) {
+                this.msjCargarHotel.innerHTML = `Se ha cargado el hotel correctamente `;
+            } else {
+                this.msjCargarHotel.innerHTML = `Ha ocurrido un error al intentar modificar el hotel`;
+            }
+
             console.log(response);
-            alert("Se ah añadido el nuevo hotel")
+
+            this.modalCargarHotel.classList.remove("hidden");
+            setTimeout(() => this.modalCargarHotel.classList.add("hidden"), 2500);
         })
     }
 }

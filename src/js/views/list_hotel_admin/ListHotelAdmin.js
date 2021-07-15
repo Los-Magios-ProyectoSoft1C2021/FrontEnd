@@ -3,11 +3,11 @@ import AbstractView from "../AbstractView";
 import view from "./list_hotel_admin.html";
 const template = require('./list_hotel_admin.handlebars');
 
-import { getHotelesByPage} from "../../services/MicroservicioHotel";
+import { getHotelesByPage } from "../../services/MicroservicioHotel";
 
 import { navigateTo } from "../../routes";
 
-export default class extends AbstractView{
+export default class extends AbstractView {
 
     hotelsList;
 
@@ -19,8 +19,6 @@ export default class extends AbstractView{
 
         if ('page' in params)
             this.currentPage = params.page;
-
-        
 
         this.setTitle("Booking UNAJ");
     }
@@ -42,20 +40,30 @@ export default class extends AbstractView{
         this.hotelsList = document.getElementById("list_admin_hotel");
         this.hotelsList.innerHTML = htmlHotels;
 
-        
+
         let buttonHotelModify = document.querySelectorAll(".modificar-hotel");
 
         buttonHotelModify.forEach(element => {
             element.addEventListener("click", (e) => {
                 const hotelId = e.target.closest(".modificar-hotel").getAttribute("hotel-id");
-                console.log(hotelId);
 
                 history.pushState(undefined, undefined, `/admin/modify-hotel/${hotelId}`);
-                navigateTo(location.pathname);
+                navigateTo();
             });
+        });
+
+        let buttonsHotelReservas = document.querySelectorAll(".reservas-hotel");
+
+        buttonsHotelReservas.forEach(element => {
+            element.addEventListener("click", (e) => {
+                const hotelId = e.target.closest(".reservas-hotel").getAttribute("hotel-id");
+
+                history.pushState(undefined, undefined, `/admin/reservas/hotel/${hotelId}`);
+                navigateTo();
+            })
         })
-        
-        
+
+
         let navPages = document.querySelectorAll(".nav-hotels-list-admin");
 
         navPages.forEach(element => {
@@ -77,7 +85,7 @@ export default class extends AbstractView{
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
-    async getHtml(){
+    async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
         divElement.id = "list_hotel_admin";

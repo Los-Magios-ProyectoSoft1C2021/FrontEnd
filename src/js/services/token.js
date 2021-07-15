@@ -1,3 +1,5 @@
+import jwtDecode from "jwt-decode";
+
 const LOCATION_KEY = "TOKEN";
 
 const saveToken = (token) => {
@@ -12,4 +14,14 @@ const deleteToken = () => {
     localStorage.removeItem(LOCATION_KEY);
 };
 
-export { saveToken, getToken, deleteToken }
+const getRol = () => {
+    const token = getToken();
+
+    if (token == null)
+        return null;
+
+    const jwt = jwtDecode(token);
+    return jwt.Rol;
+}
+
+export { saveToken, getToken, deleteToken, getRol }

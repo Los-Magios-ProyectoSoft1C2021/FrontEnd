@@ -3,11 +3,16 @@ import AbstractView from "../AbstractView";
 import view from "./modify_hotel_admin.html";
 
 import { getHotelDetailsById, putHotel } from "../../services/MicroservicioHotel";
+import { getRol } from "../../services/token";
+import { navigateTo } from "../../routes";
 
 const template = require("./modify_hotel_admin.handlebars");
 
-export default class extends AbstractView{
-    //Hotel var
+export default class extends AbstractView {
+    modalModificarHotel;
+    msjModificarHotel;
+
+    //Hotel vars
     idHotel;
     txtNombreHotel;
     txtProvincia;
@@ -23,15 +28,13 @@ export default class extends AbstractView{
     txtCorreo;
     btnModifyHotel;
 
-
     container;
-
 
     constructor(params) {
         super(params);
     }
 
-    async getHtml(){
+    async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
         divElement.id = "modify_hotel_admin";
@@ -48,10 +51,13 @@ export default class extends AbstractView{
         this.container.innerHTML = view;
         this.initElements();
         this.initBtnModifyHotel();
-
     }
 
-    initElements(){
+    initElements() {
+
+        this.modalModificarHotel = document.querySelector('#modal-modify-hotel-admin');
+        this.msjModificarHotel = document.querySelector('#msj-modify-hotel-admin')
+
         this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
         this.txtProvincia = document.querySelector('#txt-provincia');
         this.txtCiudad = document.querySelector('#txt-ciudad');
@@ -65,15 +71,15 @@ export default class extends AbstractView{
         this.txtObvservacionesDireccion = document.querySelector('#txt-obvservaciones-direccion');
         this.txtCorreo = document.querySelector('#txt-email');
 
-
         this.btnModifyHotel = document.querySelector('#btn-add-hotel')
-
     }
 
-    initBtnModifyHotel(){
+    initBtnModifyHotel() {
 
         this.btnModifyHotel.addEventListener("click", async (e) => {
-            
+
+            this.btnModifyHotel.disabled = true;
+
             let nombre = this.txtNombreHotel.value;
             let longitud = this.txtLongitud.value;
             let latitud = this.txtLatitud.value;
@@ -88,25 +94,35 @@ export default class extends AbstractView{
             let correo = this.txtCorreo.value;
             let idHotel = this.params.id;
 
-
             let response = await putHotel({
-                hotelId:idHotel,
-                nombre:nombre,
-                longitud:longitud,
-                latitud:latitud,
-                provincia:provincia,
-                ciudad:ciudad,
-                direccion:direccion,
-                direccionNum:direccionNum,
-                direccionObservaciones:direccionObservaciones,
-                codigoPostal:codigoPostal,
-                estrellas:estrellas,
-                telefono:telefono,
-                correo:correo,
+                hotelId: idHotel,
+                nombre: nombre,
+                longitud: longitud,
+                latitud: latitud,
+                provincia: provincia,
+                ciudad: ciudad,
+                direccion: direccion,
+                direccionNum: direccionNum,
+                direccionObservaciones: direccionObservaciones,
+                codigoPostal: codigoPostal,
+                estrellas: estrellas,
+                telefono: telefono,
+                correo: correo,
             });
 
+            this.btnModifyHotel.disabled = false;
+
+            if (response.ok) {
+                this.msjModificarHotel.innerHTML = `Se ha modificado el hotel correctamente `;
+            }
+            else {
+                this.msjModificarHotel.innerHTML = `Ha ocurrido un error al intentar modificar el hotel`;
+            }
+
             console.log(response);
-            alert("Se ah modificado el hotel")
-        })
+
+            this.modalModificarHotel.classList.remove("hidden");
+            setTimeout(() => this.modalModificarHotel.classList.add("hidden"), 2500);
+        });
     }
 }

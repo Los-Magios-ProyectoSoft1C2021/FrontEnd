@@ -68,7 +68,7 @@ export default class extends AbstractView {
             let telefono = this.txtTelefono.value;
             let nacionalidad = this.txtTelefono.value;
 
-            this.btnSubmit.disabled = true;
+            this.btnRegister.disabled = true;
             let result = await registerUser({
                 nombre: nombre,
                 apellido: apellido,
@@ -79,7 +79,7 @@ export default class extends AbstractView {
                 telefono: telefono,
                 nacionalidad: nacionalidad
             });
-            this.btnSubmit.disabled = false;
+            this.btnRegister.disabled = false;
 
             if ('token' in result) {
                 new MenuUsuario().init();

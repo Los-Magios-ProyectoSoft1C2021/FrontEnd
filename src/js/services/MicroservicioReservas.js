@@ -60,6 +60,55 @@ const putReserva = async ({
     return response;
 }
 
+const getReservas = async () => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
+    const url = `${MICROSERVICIO_RESERVAS}api/reserva`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        mode: "cors",
+        cache: "default"
+    });
+
+    return response.json();
+};
+
+const postContacto = async ({
+    nombre,
+    correo,
+    motivo,
+    mensaje
+}) => {
+    
+
+    const url = `${MICROSERVICIO_RESERVAS}api/contacto`;
+    let response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            
+        },
+        body: JSON.stringify({
+            nombre: nombre,
+            correo: correo,
+            motivo: motivo,
+            mensaje: mensaje
+        }),
+        mode: "cors",
+        cache: "default"
+    });
+
+    return response;
+};
+
 const getReservasUser = async () => {
     const token = getToken();
 
@@ -80,4 +129,24 @@ const getReservasUser = async () => {
     return response.json();
 };
 
-export { postReserva, putReserva, getReservasUser }
+const getReservasByHotelId = async (hotelId) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
+    const url = `${MICROSERVICIO_RESERVAS}api/reserva/hotel/${hotelId}`;
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        mode: "cors",
+        cache: "default"
+    });
+
+    return await response.json();
+}
+
+export { postReserva, putReserva, getReservasUser, getReservas, getReservasByHotelId, postContacto }

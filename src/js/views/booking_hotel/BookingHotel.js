@@ -1,12 +1,14 @@
 import { navigateTo } from "../../routes";
-import { getReservasUser, putReserva } from "../../services/MicroservicioReservas";
+import { getReservasByHotelId, getReservasUser, putReserva } from "../../services/MicroservicioReservas";
 import { ISODateToDDMMYYY } from "../../utils/DateFormatConvert";
 import AbstractView from "../AbstractView";
 
-import view from "./booking_user.html";
-const template = require("./booking_user.handlebars");
+import view from "./booking_hotel.html"
+const template = require("./booking_hotel.handlebars");
 
 export default class extends AbstractView {
+    hotelId;
+
     containerReservas;
     containerModalBaja;
     containerConfirmarBaja;
@@ -25,19 +27,23 @@ export default class extends AbstractView {
 
     constructor(params) {
         super(params);
+
+        if ('id' in params)
+            this.hotelId = params.id;
     }
 
     async getHtml() {
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
-        divElement.id = "booking_user";
+        divElement.id = "booking_hotel";
 
         return divElement;
     }
 
     async loadReservas() {
-
-        this.reservas = await getReservasUser();
+        console.log(this.hotelId);
+        this.reservas = await getReservasByHotelId(this.hotelId);
+        console.log(this.reservas);
 
         const htmlTemplate = template({
             reservas: this.reservas

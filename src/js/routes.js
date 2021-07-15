@@ -14,6 +14,8 @@ import ListHotelAdmin from "./views/list_hotel_admin/ListHotelAdmin.js";
 import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
 import BookingAdmin from "./views/booking_admin/BookingAdmin.js";
 import BookingUserList from "./views/booking_user_list/BookingUserList.js";
+import ContacHotel from "./views/contact_hotel/ContacHotel.js";
+import BookingHotel from "./views/booking_hotel/BookingHotel.js";
 import QueHacemos from "./views/que-hacemos/que-hacemos.js";
 import Objetivos from "./views/objetivos/objetivos.js";
 import Mision from "./views/mision/mision.js";
@@ -103,6 +105,18 @@ const routes = [
         path: "/admin/reservas",
         action: async () => {
             return new BookingAdmin();
+        },
+    },
+    {
+        path: "/admin/reservas/hotel/:id",
+        action: async (context) => {
+            return new BookingHotel(context.params);
+        }
+    },
+    {
+        path: "/publicar",
+        action: async () => {
+            return new ContacHotel();
         },
     },
     {
