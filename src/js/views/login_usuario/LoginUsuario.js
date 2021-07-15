@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import { navigateTo } from "../../routes";
 import { loginUser } from "../../services/MicroservicioUsuario";
 import { getToken } from "../../services/token";
@@ -56,11 +57,18 @@ export default class extends AbstractView {
             if ('token' in result) {
                 new MenuUsuario().init();
 
-                history.back();
-                setTimeout(() => navigateTo(), 100);
+                let json = jwtDecode(result.token);
+                console.log(json);
+
+                if (json.Rol == "Admin") {
+                    history.pushState(undefined, undefined, "/admin/add-hotel")
+                    setTimeout(() => navigateTo(), 100);
+                } else {
+                    history.back();
+                    setTimeout(() => navigateTo(), 100);
+                }
             }
         });
     }
-
 
 }

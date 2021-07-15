@@ -3,9 +3,11 @@ import { getReservasUser, putReserva } from "../../services/MicroservicioReserva
 import { ISODateToDDMMYYY } from "../../utils/DateFormatConvert";
 import AbstractView from "../AbstractView";
 
+import view from "./booking_user.html";
 const template = require("./booking_user.handlebars");
 
 export default class extends AbstractView {
+    containerReservas;
     containerModalBaja;
     containerConfirmarBaja;
     containerCancelEvents;
@@ -26,8 +28,6 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const view = await this.loadReservas();
-
         let divElement = document.createElement("div");
         divElement.innerHTML = view;
         divElement.id = "booking_user";
@@ -36,16 +36,19 @@ export default class extends AbstractView {
     }
 
     async loadReservas() {
+
         this.reservas = await getReservasUser();
 
-        const view = template({
+        const htmlTemplate = template({
             reservas: this.reservas
         });
 
-        return view;
+        this.containerReservas.innerHTML = htmlTemplate;
     }
 
     async executeViewScript() {
+        this.containerReservas = document.querySelector("#container-reservas");
+        await this.loadReservas();
         this.initElements();
 
         this.initButtonsDarDeBaja();
@@ -84,6 +87,9 @@ export default class extends AbstractView {
         this.txtFechaEntradaConfirmarBaja.innerHTML = ISODateToDDMMYYY(reserva.fechaInicio);
         this.txtFechaSalidaConfirmarBaja.innerHTML = ISODateToDDMMYYY(reserva.fechaFin);
 
+        console.log(this.containerConfirmarBaja);
+        console.log(this.containerCancelEvents);
+
         this.containerCancelEvents.classList.remove("hidden");
         this.containerConfirmarBaja.classList.remove("hidden");
 
@@ -108,9 +114,6 @@ export default class extends AbstractView {
             this.modalBajaReserva.classList.remove("hidden");
             setTimeout(() => this.modalBajaReserva.classList.add("hidden"), 2500);
 
-            const view = await this.loadReservas();
-            let container = document.querySelector("#booking_user");
-            container.innerHTML = view;
             this.executeViewScript();
         });
 
@@ -118,6 +121,6 @@ export default class extends AbstractView {
         btnCancelarBaja.addEventListener("click", async (e) => {
             this.containerCancelEvents.classList.add("hidden");
             this.containerConfirmarBaja.classList.add("hidden");
-        })
+        });
     }
 }
