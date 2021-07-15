@@ -56,7 +56,7 @@ const routes = [
         },
     },
     {
-        path: "/booking_user_list",
+        path: "/usuario/reservas-list",
         action: async () => {
             return new BookingUserList();
         },
@@ -80,19 +80,19 @@ const routes = [
         },
     },
     {
-        path: "/modify_hotel_admin",
-        action: async () => {
-            return new ModifyHotelAdmin();
+        path: "/admin/modify-hotel/:id",
+        action: async (context) => {
+            return new ModifyHotelAdmin(context.params);
         },
     },
     {
-        path: "/list_hotel_admin",
-        action: async () => {
-            return new ListHotelAdmin();
+        path: "/admin/list-hotel",
+        action: async (context) => {
+            return new ListHotelAdmin(context.query);
         },
     },
     {
-        path: "/booking_admin",
+        path: "/admin/reservas",
         action: async () => {
             return new BookingAdmin();
         },

@@ -19,6 +19,7 @@
     "dependencies": {
         "@googlemaps/js-api-loader": "^1.12.1",
         "@splidejs/splide": "^2.4.21",
+        "@tailwindcss/forms": "^0.3.3",
         "connect-livereload": "^0.6.1",
         "express": "^4.17.1",
         "handlebars": "^4.7.7",
