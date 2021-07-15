@@ -3,10 +3,9 @@ import view from "./home.html";
 
 import { Datepicker } from 'vanillajs-datepicker'
 import Splide from "@splidejs/splide";
-import { data } from "autoprefixer";
 
 import { navigateTo } from "../../routes.js";
-import { convertCategoryToId } from "../../utils/ConvertCategoryToId";
+import { convertCategoryToId } from "../../utils/CategoryConvert";
 import { convertTextToDestino } from "../../utils/ConvertTextToDestino";
 
 const updateDestinos = async (e) => {

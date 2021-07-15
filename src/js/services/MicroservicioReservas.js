@@ -21,8 +21,8 @@ const postReserva = async ({
             "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
-            hotelId: hotelId,
-            tipoHabitacionId: tipoHabitacionId,
+            hotelId: parseInt(hotelId),
+            tipoHabitacionId: parseInt(tipoHabitacionId),
             fechaInicio: fechaInicio,
             fechaFin: fechaFin
         }),
@@ -30,8 +30,35 @@ const postReserva = async ({
         cache: "default"
     });
 
-    return response.ok;
+    return response;
 };
+
+const putReserva = async ({
+    reservaId,
+    estadoReservaId
+}) => {
+    const token = getToken();
+
+    if (token == null)
+        return;
+
+    const url = `${MICROSERVICIO_RESERVAS}api/reserva/${reservaId}`;
+    let response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            estadoReservaId: estadoReservaId
+        }),
+        mode: "cors",
+        cache: "default"
+    });
+
+    return response;
+}
 
 const getReservasUser = async () => {
     const token = getToken();
@@ -53,4 +80,4 @@ const getReservasUser = async () => {
     return response.json();
 };
 
-export { postReserva, getReservasUser }
+export { postReserva, putReserva, getReservasUser }

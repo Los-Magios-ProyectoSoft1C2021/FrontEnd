@@ -7,7 +7,7 @@ import SearchHotels from "./views/search_hotels/SearchHotels.js";
 import LoginUsuario from "./views/login_usuario/LoginUsuario.js";
 import RegisterUsuario from "./views/register_usuario/RegisterUsuario.js";
 import BookingUser from "./views/booking_user/BookingUser.js";
-import BookingConfirm from "./views/bookin_confirm/BookingConfirm.js";
+import BookingConfirm from "./views/booking_confirm/BookingConfirm.js";
 import AddHotelAdmin from "./views/add_hotel_admin/AddHotelAdmin.js";
 import LoginAdmin from "./views/login_admin/LoginAdmin.js";
 import ListHotelAdmin from "./views/list_hotel_admin/ListHotelAdmin.js";
@@ -63,8 +63,8 @@ const routes = [
     },
     {
         path: "/reserva/confirmar",
-        action: async () => {
-            return new BookingConfirm();
+        action: async (context) => {
+            return new BookingConfirm(context.query);
         },
     },
     {

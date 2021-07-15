@@ -1,5 +1,6 @@
 import { navigateTo } from "../../routes";
 import { loginUser } from "../../services/MicroservicioUsuario";
+import { getToken } from "../../services/token";
 import AbstractView from "../AbstractView";
 
 import MenuUsuario from "../menu_user/MenuUsuario";
@@ -15,6 +16,12 @@ export default class extends AbstractView {
         super(params);
 
         this.setTitle("Iniciar sesión - Booking UNAJ");
+
+        const token = getToken();
+        if (token != null) {
+            history.back();
+            setTimeout(() => navigateTo(), 100);
+        }
     }
 
     async getHtml() {
@@ -42,14 +49,15 @@ export default class extends AbstractView {
             let nombreUsuario = this.txtNombreUsuario.value;
             let contraseña = this.txtContraseña.value;
 
+            this.btnSubmit.disabled = true;
             let result = await loginUser({ nombreUsuario, contraseña });
-            console.log(result);
+            this.btnSubmit.disabled = false;
 
             if ('token' in result) {
                 new MenuUsuario().init();
 
                 history.back();
-                navigateTo(location.pathname);
+                setTimeout(() => navigateTo(), 100);
             }
         });
     }

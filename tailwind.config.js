@@ -19,7 +19,8 @@ module.exports = {
     },
     variants: {
         extend: {
-            ringColor: ['hover']
+            ringColor: ['hover'],
+            opacity: ['disabled'],
         },
     },
     plugins: [],
