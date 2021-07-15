@@ -15,6 +15,7 @@ import ModifyHotelAdmin from "./views/modify_hotel_admin/ModifyHotelAdmin.js";
 import BookingAdmin from "./views/booking_admin/BookingAdmin.js";
 import BookingUserList from "./views/booking_user_list/BookingUserList.js";
 import ContacHotel from "./views/contact_hotel/ContacHotel.js";
+import BookingHotel from "./views/booking_hotel/BookingHotel.js";
 
 const routes = [
     {
@@ -97,6 +98,12 @@ const routes = [
         action: async () => {
             return new BookingAdmin();
         },
+    },
+    {
+        path: "/admin/reservas/hotel/:id",
+        action: async (context) => {
+            return new BookingHotel(context.params);
+        }
     },
     {
         path: "/contacto",

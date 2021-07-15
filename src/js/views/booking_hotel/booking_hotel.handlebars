@@ -1,13 +1,13 @@
 <div class="bg-gray-100 py-20 min-h-90vh">
     <div class="md:container mx-auto space-y-6">
-        <h1 class="font-h1 text-black ml-5">Mis reservas</h1>
+        <h1 class="font-h1 text-black ml-5">Reservas del hotel {{reservas.0.hotel}}</h1>
 
         <!-- reservas -->
         <div class="space-y-1">
             <!-- titulos columnas -->
             <div class="ml-1 px-5 grid grid-cols-9">
                 <div class="col-span-3 my-auto">
-                    <h6 class="font-h6">Detalles del hotel</h6>
+                    <h6 class="font-h6">Detalles del usuario</h6>
                 </div>
                 <div class="col-span-1 my-auto text-center">
                     <h6 class="font-h6">Habitación</h6>
@@ -30,8 +30,8 @@
                 <div class="p-5 border-l-4 border-indigo-700 rounded-l">
                     <div class="grid grid-cols-9">
                         <div class="col-span-3 my-auto">
-                            <a href="/hotel/{{hotelId}}" data-link class="font-h4 link-primary">{{hotel}}</a>
-                            <p class="font-subtitle">{{hotelDireccion}}</p>
+                            <p class="font-h4 text-gray-800">{{nombre}} {{apellido}}</p>
+                            <p class="font-subtitle">{{nombreUsuario}}</p>
                         </div>
                         <div class="col-span-1 my-auto text-center">
                             <p class="font-h4 text-gray-800">{{habitacionNombre}}</p>
