@@ -1,0 +1,32 @@
+<div class="pt-6 pb-24 bg-gray-100">
+    <main class="container-login border border-gray-300">
+        <section>
+            <h3 class="font-h6 text-2xl">Comunicate con nostros</h3>
+            <p class="font-h6 text-gray-700 pt-2">Completa el formulario</p>
+        </section>
+
+        <section class="mt-10">
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <label class="label-login" for="text">Nombre </label>
+                <input type="text" id="txt-nombre-contacto" class="input-login" required="">
+            </div>
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <label class="label-login" for="email">Correo</label>
+                <input type="text" id="txt-email-contacto" class="input-login" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <label class="label-login" for="motivo">Motivo</label>
+                <input type="text" id="txt-motivo" class="input-login" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            <div class="mb-6 pt-3 rounded bg-gray-200">
+                <span class="text-gray-800 text-sm font-h6 mb-2 ml-3">Mensaje</span>
+                <textarea id="txt-mensaje" class="form-textarea input-login mt-1 block w-full" rows="3" placeholder="Escriba el mensaje."></textarea>
+            </div>
+            <div class="flex flex-grow flex-row items-center justify-center">
+                <button
+                    class="bg-primary hover:bg-primary-darker text-white font-h4 font-semibold py-3 rounded shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 w-full "
+                    id="btn-submit-contacto">Enviar</button>
+            </div>
+        </section>
+    </main>
+</div>
