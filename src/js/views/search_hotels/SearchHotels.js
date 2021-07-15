@@ -162,7 +162,7 @@ export default class extends AbstractView {
             const path = "/buscar?" + params.toString();
             console.log(path);
 
-            history.pushState(undefined, undefined, "path");
+            history.pushState(undefined, undefined, path);
             navigateTo();
         });
     }

@@ -38,7 +38,8 @@ export default class extends AbstractView{
     initBtnSend(){
 
         this.btnSend.addEventListener("click", async (e) => {
-            
+            console.log("click");
+
             this.btnSend.disabled = true;
 
             let nombreC = this.txtNombre.value;
@@ -46,6 +47,8 @@ export default class extends AbstractView{
             let motivoC = this.txtMotivo.value;
             let mensajeC = this.txtMensaje.value;
             
+            console.log(nombreC);
+
             let response = await postContacto({
                 nombre: nombreC,
                 correo: correoC,
@@ -54,6 +57,8 @@ export default class extends AbstractView{
             })
 
             this.btnSend.disabled = false;
+            
+            console.log(response);
 
         })
     }

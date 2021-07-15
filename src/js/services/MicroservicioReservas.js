@@ -86,10 +86,7 @@ const postContacto = async ({
     motivo,
     mensaje
 }) => {
-    const token = getToken();
-
-    if (token == null)
-        return;
+    
 
     const url = `${MICROSERVICIO_RESERVAS}api/contacto`;
     let response = await fetch(url, {
@@ -97,7 +94,7 @@ const postContacto = async ({
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            
         },
         body: JSON.stringify({
             nombre: nombre,
