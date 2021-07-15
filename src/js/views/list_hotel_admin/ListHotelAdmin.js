@@ -20,7 +20,6 @@ export default class extends AbstractView{
         if ('page' in params)
             this.currentPage = params.page;
 
-        
 
         this.setTitle("Booking UNAJ");
     }

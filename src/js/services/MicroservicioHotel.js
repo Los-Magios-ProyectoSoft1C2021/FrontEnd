@@ -177,7 +177,7 @@ const putHotel = async ({
         cache: "default"
     });
 
-    return response.ok;
+    return response;
 };
 
 const getHabitacionesByHotelId = async (hotelId) => {

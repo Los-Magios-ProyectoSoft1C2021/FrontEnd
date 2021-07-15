@@ -7,6 +7,9 @@ import { getHotelDetailsById, putHotel } from "../../services/MicroservicioHotel
 const template = require("./modify_hotel_admin.handlebars");
 
 export default class extends AbstractView{
+    modalModificarHotel;
+    msjModificarHotel;
+
     //Hotel var
     idHotel;
     txtNombreHotel;
@@ -52,6 +55,10 @@ export default class extends AbstractView{
     }
 
     initElements(){
+
+        this.modalModificarHotel = document.querySelector('#modal-modify-hotel-admin');
+        this.msjModificarHotel = document.querySelector('#msj-modify-hotel-admin')
+
         this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
         this.txtProvincia = document.querySelector('#txt-provincia');
         this.txtCiudad = document.querySelector('#txt-ciudad');
@@ -73,7 +80,10 @@ export default class extends AbstractView{
     initBtnModifyHotel(){
 
         this.btnModifyHotel.addEventListener("click", async (e) => {
+
+            this.btnModifyHotel.disabled = true;
             
+
             let nombre = this.txtNombreHotel.value;
             let longitud = this.txtLongitud.value;
             let latitud = this.txtLatitud.value;
@@ -105,8 +115,20 @@ export default class extends AbstractView{
                 correo:correo,
             });
 
+            this.btnModifyHotel.disabled = false;
+            
+            if (response.ok) {
+                this.msjModificarHotel.innerHTML = `Se ha modificado el hotel correctamente `;
+            } 
+            else {
+                this.msjModificarHotel.innerHTML = `Ha ocurrido un error al intentar modificar el hotel`;
+            }
+
             console.log(response);
-            alert("Se ah modificado el hotel")
+            
+            this.modalModificarHotel.classList.remove("hidden");
+            setTimeout(() => this.modalModificarHotel.classList.add("hidden"), 2500);
+            
         })
     }
 }

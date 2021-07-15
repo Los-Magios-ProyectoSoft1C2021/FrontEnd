@@ -5,7 +5,9 @@ import AbstractView from "../AbstractView";
 import view from "./add_hotel_admin.html";
 
 export default class extends AbstractView{
-    
+    modalCargarHotel;
+    msjCargarHotel;
+
     txtNombreHotel;
     txtProvincia;
     txtCiudad;
@@ -43,85 +45,11 @@ export default class extends AbstractView{
         this.initBtnAddHotel();
 
     }
-    /*
-    validationBtn(){
-
-        this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
-        this.txtProvincia = document.querySelector('#txt-provincia');
-        this.txtCiudad = document.querySelector('#txt-ciudad');
-        this.txtDireccion = document.querySelector('#txt-direccion');
-        this.txtNumero = document.querySelector('#txt-direccion-numero');
-        this.txtCodigoPostal = document.querySelector('#txt-codigo-postal');
-        this.txtLongitud = document.querySelector('#txt-longitud');
-        this.txtLatitud = document.querySelector('#txt-latitud');
-        this.numEstrellas = document.querySelector('#num-estrellas');
-        this.telTelefono = document.querySelector('#tel-telefono');
-        this.txtObvservacionesDireccion = document.querySelector('#txt-obvservaciones-direccion');
-        this.txtCorreo = document.querySelector('#txt-email');
-
-
-        var val=0;
-
-        if(this.txtNombreHotel == ""){
-            val ++;
-        }
-        if(this.txtProvincia == ""){
-            val ++;
-        }
-        if(this.txtCiudad == ""){
-            val ++;
-        }
-        if(this.txtDireccion == ""){
-            val ++;
-        }
-        if(this.txtNumero == ""){
-            val ++;
-        }
-        if(this.txtCodigoPostal == ""){
-            val ++;
-        }
-        if(this.txtLongitud == ""){
-            val ++;
-        }
-        if(this.txtLatitud == ""){
-            val ++;
-        }
-        if(this.telTelefono == ""){
-            val ++;
-        }
-        if(this.numEstrellas == ""){
-            val ++;
-        }
-        if(this.txtObvservacionesDireccion == ""){
-            val ++;
-        }
-        if(this.txtCorreo == ""){
-            val ++;
-        }
-        if(val == 0){
-            document.getElementById('btn-add-hotel').disabled = false;
-        }
-        else {
-            document.getElementById('btn-add-hotel').disabled = false;
-        }
-    }
-
-    enableBtn(){
-        document.querySelector('#txt-nombre-hotel').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-provincia').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-ciudad').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-direccion').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-direccion-numero').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-codigo-postal').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-longitud').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-latitud').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#num-estrellas').addEventListener("change",this.validationBtn);
-        document.querySelector('#tel-telefono').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-obvservaciones-direccion').addEventListener("keyup",this.validationBtn);
-        document.querySelector('#txt-email').addEventListener("keyup",this.validationBtn);
-    }
-    */
+    
     initElements(){
+        this.modalCargarHotel = document.querySelector('#modal-carga-hotel-admin');
+        this.msjCargarHotel = document.querySelector('#msj-carga-hotel-admin')
+
         this.txtNombreHotel = document.querySelector('#txt-nombre-hotel');
         this.txtProvincia = document.querySelector('#txt-provincia');
         this.txtCiudad = document.querySelector('#txt-ciudad');
@@ -149,6 +77,8 @@ export default class extends AbstractView{
     initBtnAddHotel(){
         this.btnAddHotel.addEventListener("click", async (e) => {
             
+            this.btnAddHotel.disabled = true;
+
             let nombre = this.txtNombreHotel.value;
             let longitud = this.txtLongitud.value;
             let latitud = this.txtLatitud.value;
@@ -220,9 +150,18 @@ export default class extends AbstractView{
                 descripcion: fotoDescripcion
             })
             
-            
+            this.btnAddHotel.disabled = false;
+
+            if (response.ok) {
+                this.msjCargarHotel.innerHTML = `Se ha cargado el hotel correctamente `;
+            } else {
+                this.msjCargarHotel.innerHTML = `Ha ocurrido un error al intentar modificar el hotel`;
+            }
+
             console.log(response);
-            alert("Se ah añadido el nuevo hotel")
+            
+            this.modalCargarHotel.classList.remove("hidden");
+            setTimeout(() => this.modalCargarHotel.classList.add("hidden"), 2500);
         })
     }
 }
